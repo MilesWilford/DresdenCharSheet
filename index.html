@@ -20,12 +20,73 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        <div class="bleed">
-            Content
-        </div>
+        <form class="bleed">
+            <h1>The Dresden Files Role-Playing Game HTML5 Character Sheet</h1>
+            <h2>Character Phases Worksheet</h2>
+            <header>
+                <h1>Instructions:</h1>
+                <p>The grey boxes can be filled in by the user.  When printing pages, the grey backgrounds will be hidden by CSS magic. </p>
+            </header>
+            <div class="smallsections clearfix">
+                <section><p>Character:</p><input name="character" type="text" /></section>
+                <section><p>Player:</p><input name="player" type="text" /></section>
+                <section><p>Template:</p><select name="template">
+                    <option name="pure_mortal">Pure Mortal</option>
+                    <option name="wizard">Wizard</option>
+                </select></section>
+                <section><p>High Concept Aspect:</p><input name="high_concept" type="text" /></section>
+                <section><p>Musts:</p><input name="musts" type="text" /></section>
+                <section><p>Trouble Aspect:</p><input name="trouble" type="text" /></section>
+            </div>
+            <section class="phases">
+                <section id="phase1">
+                    <h1>Phase One</h1>
+                    <h2>Background: Where did you come from?</h2>
+                    <textarea name="phase1">What nation, region, culture are you from? What were your family circumstances like? What's your relationship with your family? How were you educated? What were your friends like? Did you get into trouble much? If you're supernatural, how early did you learn this? Were there problems?</textarea>
+                    <input name="phase1aspect" type="text" placeholder="Phase Aspect" />
+                </section>
+                <section id="phase2">
+                    <h1>Phase Two</h1>
+                    <h2>Rising Conflict: What shaped you?</h2>
+                    <textarea name="phase2">Who were the prominent people in your life at this point? Do you have enemies? Close and fast friends? How did your high concept and trouble aspects shape you and events around you? What were the most significant choices you made? What lessons did you learn in this time?</textarea>
+                    <input name="phase2aspect" type="text" placeholder="Phase Aspect" />
+                </section>
+                <section id="phase3">
+                    <h1>Phase Three</h1>
+                    <h2>The Story: What was your first adventure?</h2>
+                    <textarea name="phase3">Story Title &amp; Guest Starring...</textarea>
+                    <input name="phase3aspect" type="text" placeholder="Phase Aspect" />
+                </section>
+                <section id="phase4">
+                    <h1>Phase Four</h1>
+                    <h2>Guest Star: Whose path have you crossed?</h2>
+                    <textarea name="phase4">Story Title &amp; Whose story was this?  Who else was in it?</textarea>
+                    <input name="phase4aspect" type="text" placeholder="Phase Aspect" />
+                </section>
+                <section id="phase5">
+                    <h1>Phase Five</h1>
+                    <h2>Guest Star Redux: Who else's path have you crossed?</h2>
+                    <textarea name="phase5">Story Title &amp; Whose story was this?  Who else was in it?</textarea>
+                    <input name="phase5aspect" type="text" placeholder="Phase Aspect" />
+                </section>
+            </section>
+            <h2>Character Sheet</h2>
+            <div class="smallsections clearfix">
+                <div> <!-- Left col -->
+                    <section><p>Character:</p><div class="input char_name">&nbsp;</div></section>
+                </div>
+                <div> <!-- Right col -->
+                    <section><p>Player:</p><div class="input player_name">&nbsp;</div></section>
+                </div>
+            </div>
+        </form>
+
+        <footer role="contentinfo">
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">The Dresden Files Role-Playing Game HTML5 Character Sheet</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Miles Wilford</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.evilhat.com/home/dresden-files-rpg-downloads/" rel="dct:source">http://www.evilhat.com/home/dresden-files-rpg-downloads/</a>.</p>
+            <p>This work is designed to mimic the original character sheets and is for personal use.  If you payed for this character sheet, you were conned.</p>
+        </footer>
 
         <script src="js/vendor/jquery-1.9.1.min.js"></script>
-        <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

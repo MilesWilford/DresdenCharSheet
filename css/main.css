@@ -70,14 +70,6 @@ fieldset {
     padding: 0;
 }
 
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
-}
-
 /* ==========================================================================
    Chrome Frame prompt
    ========================================================================== */
@@ -92,96 +84,137 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-.bleed {
-    border: 1px #000 solid;
-    margin: 25px auto;
-    width: 900px
+html, body, input, textarea, select {
+    font-variant: small-caps;
 }
 
+header {
+    background-color: #CCC;
+    text-align: center;
+}
 
+section, header {
+    border: 1px #000 solid;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 8px;
+    margin: .4%;
+}
 
+input, select, textarea {
+        border: 1px #FFF solid;
+        border-radius: 8px;
+        background-color: #CCC;
+        padding: 2px;
+}
 
+textarea {
+    resize: none;
+}
 
+h1 {
+    font-size: 18px;
+    text-align: center;
+}
 
+h2 {
+    font-size: 24px;
+    text-align: center;
+}
 
+.bleed {
+    margin: 25px auto;
+    padding: 0;
+    width: 900px;
+}
 
+    .smallsections section, .smallsections > div {
+        float: left;
+        width: 49.2%;
+    }
 
+        .smallsections > div > section {
+            width: 99.6%;
+            margin: .2%;
+        }
 
+    .smallsections p {
+        float: left;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
 
+    .smallsections input, .smallsections select, .smallsections .input {
+        display: block;
+        float: right;
+        min-height: 24px;
+        width: 14em;
+    }
 
+.phases {
+    text-align: right;
+}
 
+    .phases section {
+        border: 0;
+        border-bottom: 1px #222 solid;
+        border-radius: 0;
+        margin: 0;
+        padding-left: 35px
+    }
 
+        .phases section:last-of-type {
+            border: 0;
+        }
+
+    .phases textarea {
+        display: block;
+        height: 10ex;
+        width: 100%;
+    }
+
+        .phases h2:after {
+            color: #999;
+            content: "Events";
+            display: block;
+            font-size: 12px;
+            height: 0px;
+            text-align: left;
+        }
+
+    .phases h1 {
+        display: inline-block;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        position: relative;
+            right: 815px;
+            top: 62px;
+        text-align: left;
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -o-transform: rotate(270deg);
+
+    }
+
+    .phases h2 {
+        font-size: 16px;
+        margin-top: -25px;
+        text-align: center;
+    }
+
+    .phases input[name$='aspect'] {
+        font-weight: bold;
+    }
+
+footer {
+    text-align: center;
+}
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
-
-/*
- * Image replacement
- */
-
-.ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
-    /* IE 6/7 fallback */
-    *text-indent: -9999px;
-}
-
-.ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 150%;
-}
-
-/*
- * Hide from both screenreaders and browsers: h5bp.com/u
- */
-
-.hidden {
-    display: none !important;
-    visibility: hidden;
-}
-
-/*
- * Hide only visually, but have it available for screenreaders: h5bp.com/v
- */
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
-
-/*
- * Extends the .visuallyhidden class to allow the element to be focusable
- * when navigated to via the keyboard: h5bp.com/p
- */
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-}
-
-/*
- * Hide visually and from screenreaders, but maintain layout
- */
-
-.invisible {
-    visibility: hidden;
-}
 
 /*
  * Clearfix: contain floats
@@ -237,6 +270,10 @@ textarea {
    ========================================================================== */
 
 @media print {
+    /* Page break definitions */
+   .phases {page-break-after: always;}
+
+    header {display: none;}
     * {
         background: transparent !important;
         color: #000 !important; /* Black prints faster: h5bp.com/s */
