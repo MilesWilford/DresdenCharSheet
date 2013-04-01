@@ -27,7 +27,8 @@
                 <h1>Instructions:</h1>
                 <p>The grey boxes can be filled in by the user.  When printing pages, the grey backgrounds will be hidden by CSS magic.</p>
                 <p>Text fields must be 'blurred' (click or tab outside of them) for changes to flow.</p>
-                <p></p>
+                <p>Use a modern browser for best results.  Internet Explorer fails on some of the CSS techniques used here.</p>
+                <p>I will eventually make a more mobile-friendly layout, but this one is not very friendly on small screens.</p>
             </header>
             <div class="smallsections clearfix">
                 <section><p>Character:</p><input name="character" type="text" /></section>
@@ -76,6 +77,83 @@
             <!-- PAGE BREAK -->
 
             <h2>Character Sheet</h2>
+            <section id="floatingcontroller" class="clearfix">
+                <h1>Character status</h1>
+                <section>
+                    <p>Current Physical Stress</p>
+                    <div>1 2 3 4 5 6 7 8</div>
+                    <div id="control_phys_stress">
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                    </div>
+                </section>
+                <section>
+                    <p>Current Mental Stress</p>
+                    <div>1 2 3 4 5 6 7 8</div>
+                    <div id="control_ment_stress">
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                    </div>
+                </section>
+                <section>
+                    <p>Current Social Stress</p>
+                    <div>1 2 3 4 5 6 7 8</div>
+                    <div id="control_soc_stress">
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                    </div>
+                </section>
+                <section>
+                    <p>Current Hunter</p>
+                    <div>1 2 3 4 5 6 7 8</div>
+                    <div id="control_hunger_stress">
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                    </div>
+                </section>
+                <h1>Stress settings</h1>
+                <section>
+                    <p>Max Physical Stress</p>
+                    <input type="number" min="0" max="8" step="1" name="max_phys_stress" />
+                </section>
+                <section>
+                    <p>Max Mental Stress</p>
+                    <input type="number" min="0" max="8" step="1" name="max_ment_stress" />
+                </section>
+                <section>
+                    <p>Max Social Stress</p>
+                    <input type="number" min="0" max="8" step="1" name="max_soc_stress" />
+                </section>
+                <section>
+                    <p>Max Hungr</p>
+                    <p><small>0 for no hunger</small></p>
+                    <input type="number" min="0" max="8" step="1" name="max_hunger_stress" />
+                </section>
+            </section>
             <div class="smallsections clearfix">
                 <div> <!-- Left col -->
                     <section><p>Character:</p><div class="input char_name">&nbsp;</div></section>
@@ -98,7 +176,7 @@
                                 <h3>Physical</h3>
                                 <p>(Endurance)</p>
                             </dt>
-                            <dd id="stress_phys">
+                            <dd id="phys_stress">
                                 <img src="img/circle.png" />
                                 <img src="img/circle.png" />
                                 <img src="img/circle.png" />
@@ -112,7 +190,7 @@
                                 <h3>Mental</h3>
                                 <p>(Conviction)</p>
                             </dt>
-                            <dd id="stress_ment">
+                            <dd id="ment_stress">
                                 <img src="img/circle.png" />
                                 <img src="img/circle.png" />
                                 <img src="img/circle.png" />
@@ -126,7 +204,7 @@
                                 <h3>Social</h3>
                                 <p>(Presence)</p>
                             </dt>
-                            <dd id="stress_soc">
+                            <dd id="soc_stress">
                                 <img src="img/circle.png" />
                                 <img src="img/circle.png" />
                                 <img src="img/circle.png" />
@@ -140,7 +218,7 @@
                                 <h3>Hunger</h3>
                                 <p>(Discipline)</p>
                             </dt>
-                            <dd class="hunger" id="stress_hunger">
+                            <dd class="hunger" id="hunger_stress">
                                 <img src="img/circle.png" />
                                 <img src="img/circle.png" />
                                 <img src="img/circle.png" />

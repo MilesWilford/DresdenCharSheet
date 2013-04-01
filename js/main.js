@@ -1,4 +1,18 @@
 $(document).ready(function() {
+    positionController();
+
+    /* Activate all the max stress boxes */
+    var stressTrackers = [
+        'phys_stress',
+        'ment_stress',
+        'soc_stress',
+        'hunger_stress'
+    ]
+
+    for (stresses in stressTrackers) {
+        activateStressTracker(stressTrackers[stresses]);
+    }
+
     /* Changing the powerLevel triggers a few other fields to change */
     $("select[name='powerlevel']").change(function() {
         var selectedVal = parseInt($('option:selected', this).attr('value'));
@@ -59,3 +73,44 @@ $(document).ready(function() {
         $("#tot_stunt_refresh").html(Math.abs(refreshCostCount));
     });
 });
+
+function activateStressTracker(name) {
+    var source = "input[name='max_" + name + "']";
+    var target = "#" + name;
+    var control = "#control_" + name;
+    $(source).change(function() {
+        $(target).empty();
+        $(control).empty();
+        for (var i = 0; i < $(this).val(); i++) {
+            $(target).append('<img src="img/circle.png" /> ');
+            var checkboxName = name + 'box' + i
+            $(control).append('<input type="checkbox" name="' + checkboxName + '" /> ');
+        }
+    });
+}
+
+function positionController() {
+    var controller = $('#floatingcontroller');
+    var controllerAlignment = window.innerWidth / 2
+                            - $('.bleed').width() / 2
+                            - getTrueWidth(controller);
+    controller.css('left', controllerAlignment + 'px');
+    var availableMargins = window.innerWidth - $('.bleed').width();
+    availableMargins /= 2;
+    if (availableMargins < getTrueWidth(controller)) {
+        console.log('Viewport too narrow, controller will not float fixed.');
+        controller.css('position', 'static');
+        controller.css('max-width', 'none');
+    } else {
+        controller.removeClass('clearfix');
+        controller.addClass('controllerFloats');
+    }
+}
+
+function getTrueWidth(element) {
+    var trueWidth = 0;
+    trueWidth += (parseInt(element.css('margin-left').replace("px", "")) + 1) * 2;
+    trueWidth += (parseInt(element.css('padding-left').replace("px", "")) +1) * 2;
+    trueWidth += element.width();
+    return trueWidth;
+}

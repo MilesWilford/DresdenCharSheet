@@ -103,6 +103,49 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+#floatingcontroller {
+    background-color: #FFF;
+    max-width: 322px;
+}
+
+    .controllerFloats {
+        position: fixed;
+            top: 0;
+            left: 0;
+        z-index: 1;
+    }
+
+    #floatingcontroller div {
+        text-align: left;
+        letter-spacing: 2px;
+    }
+
+    #floatingcontroller h1 {
+        clear: both;
+    }
+
+    #floatingcontroller section {
+        float: left;
+        width: 140px
+    }
+
+    #floatingcontroller input {
+        width: 80%;
+        text-align: center;
+    }
+
+        #floatingcontroller input[type='checkbox'] {
+            border: 1px #000 solid;
+            display: inline;
+            margin-left: -5px;
+            width: 16px;
+            word-wrap: nowrap;
+        }
+
+            #floatingcontroller input[type='checkbox']:first-of-type {
+                margin-left: 0;
+            }
+
 .bleed {
     margin: 25px auto;
     padding: 0;
@@ -205,7 +248,7 @@ input::-webkit-inner-spin-button {
     }
 
 .aspects textarea {
-    height: 110px;
+    height: 130px;
     width: 85%;
 }
 
@@ -461,7 +504,7 @@ footer {
     /* Page break definitions */
    .phases {page-break-after: always;}
 
-    header, footer {display: none;}
+    header, footer, #floatingcontroller {display: none;}
 
     * {
         background: transparent !important;
