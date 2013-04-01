@@ -97,7 +97,7 @@ header {
     text-align: center;
 }
 
-section, header, .section > div {
+section, header, .section > div, .ladder {
     border: 1px #000 solid;
     border-radius: 12px;
     padding: 8px;
@@ -121,6 +121,8 @@ h1 {
 
 h2 {
     font-size: 24px;
+    margin: 0;
+    margin-top: -.5ex;
 }
 
 h3 {
@@ -181,7 +183,7 @@ h3 {
 
     .phases textarea {
         display: block;
-        height: 10ex;
+        height: 12ex;
         width: 100%;
     }
 
@@ -219,42 +221,167 @@ h3 {
     }
 
 .aspects textarea {
-    height: 12ex;
+    height: 8ex;
     width: 85%;
 }
 
 
-.stress p {
-    font-size: 12px;
-}
+.stress {}
 
-.stress h3 {
-    font-size: 14px;
-    text-align: left;
-    margin: 0;
-}
+    .stress p {
+        font-size: 12px;
+    }
 
-.stress dl {clear: both;}
+    .stress h3 {
+        font-size: 14px;
+        text-align: left;
+        margin: 0;
+    }
 
-.stress dt {
-    width: 70px;
-    float: left;
-}
+    .stress dl {
+        clear: both;
+    }
 
-.stress dd {
-    text-align: left;
-    margin-top: -4ex;
-    height: 4ex;
-    float: right;
-    width: 83%;
-}
+    .stress dt {
+        float: left;
+        padding-top: 1ex;
+        width: 70px;
+    }
 
-.stress > p {
-    display: block;
-    margin-left: 90px;
-    padding-bottom: 4px;
-    letter-spacing: 16px;
-}
+    .stress dd {
+        text-align: left;
+        margin-top: -4ex;
+        height: 4ex;
+        float: right;
+        width: 83%;
+    }
+
+    .stress > p {
+        display: block;
+        margin-left: 89px;
+        padding-bottom: 4px;
+        letter-spacing: 16px;
+    }
+
+    .stress img {
+        margin-left: 2px;
+    }
+
+    .stress input {
+        width: 100%;
+    }
+
+    .consequences input {
+        text-align: center;
+    }
+
+    .consequences table {
+        width: 100%;
+    }
+
+        .consequences td {
+            padding: 0px 5px;
+        }
+
+            .consequences td:last-of-type {
+                width: 40%;
+            }
+
+    .consequences input {width: 100%;}
+
+.skills {}
+
+    .skills section {
+        border: 0;
+        clear: both;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        width: 100%;
+    }
+
+    .skills textarea {
+        margin-top: 1ex;
+        height: 6ex;
+        float: right;
+        width: 80%;
+    }
+
+    .skills input,
+    .stunts input {
+        display: inline;
+        float: none;
+        text-align: center;
+        width: 2em;
+    }
+
+        .skills input::-webkit-outer-spin-button,
+        .skills input::-webkit-inner-spin-button,
+        .stunts input::-webkit-outer-spin-button,
+        .stunts input::-webkit-inner-spin-button {
+            display: none;
+                -webkit-appearance: none;
+            margin: 0;
+        }
+
+.stunts{} /* Some defined in skills */
+
+    .stunts table {
+        text-align: left;
+        width: 100%;
+    }
+
+        .stunts tfoot td {
+            padding-top: 2ex;
+        }
+
+    .stunts #tot_stunt_refresh {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+        .stunts td:last-of-type {
+            width: 90%;
+        }
+
+    .stunts textarea {
+        height: 6ex;
+        width: 100%;
+    }
+
+    .stunts .shorten {
+        width: 72%;
+    }
+
+    .ladder {
+        border: 1px #000 solid;
+        background-color: #FFF !important;
+        height: 30ex;
+        float: right;
+        margin-bottom: -31ex;
+        margin-right: 0;
+        padding: 4px;;
+        position: relative;
+            top: -31ex;
+        width: 90px;
+    }
+
+        .ladder dt {
+            clear: left;
+            float: left;
+            word-wrap: nowrap;
+            width: 8em;
+            text-align: left;
+        }
+
+        .ladder dd {
+            clear: right;
+            float: right;
+            margin-top: -2.5ex;
+            width: 3em;
+            text-align: right;
+        }
 
 footer {
     text-align: center;
@@ -321,7 +448,8 @@ footer {
     /* Page break definitions */
    .phases {page-break-after: always;}
 
-    header {display: none;}
+    header, footer {display: none;}
+
     * {
         background: transparent !important;
         color: #000 !important; /* Black prints faster: h5bp.com/s */
