@@ -123,6 +123,12 @@ function activateStressTracker(name) {
     $(source).change(function() {
         $(target).empty();
         $(control).empty();
+        if ($(this).val() == 0) {
+            console.log('.' + name);
+            $('.' + name).css('display', 'none');
+        } else {
+            $('.' + name).css('display', 'block');
+        }
         for (var i = 0; i < $(this).val(); i++) {
             $(target).append('<img src="img/circle.png" /> ');
             var checkboxName = name + 'box' + i
