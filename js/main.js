@@ -6,15 +6,17 @@ $(document).ready(function() {
         dupfields.push($('.high_concept'));
         dupfields.push($('.trouble'));
 
-        var duptargets = [];
-        duptargets.push($("input[name='character']").val());
-        duptargets.push($("input[name='player']").val());
-        duptargets.push($("input[name='high_concept']").val());
-        duptargets.push($("input[name='trouble']").val());
+        var dup_source = [];
+        dup_source.push($("input[name='character']").val());
+        dup_source.push($("input[name='player']").val());
+        dup_source.push($("input[name='high_concept']").val());
+        dup_source.push($("input[name='trouble']").val());
 
-        if (dupfields.length == duptargets.length) {
+        if (dupfields.length == dup_source.length) {
             for (x in dupfields) {
-                dupfields[x].html(duptargets[x]);
+                if (dup_source[x]) {
+                    dupfields[x].html(dup_source[x]);
+                }
             }
         }
 
