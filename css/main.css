@@ -88,15 +88,18 @@ html, body, input, textarea, select {
     font-variant: small-caps;
 }
 
+body {
+    text-align: center;
+}
+
 header {
     background-color: #CCC;
     text-align: center;
 }
 
-section, header {
+section, header, .section > div {
     border: 1px #000 solid;
     border-radius: 12px;
-    box-sizing: border-box;
     padding: 8px;
     margin: .4%;
 }
@@ -114,12 +117,14 @@ textarea {
 
 h1 {
     font-size: 18px;
-    text-align: center;
 }
 
 h2 {
     font-size: 24px;
-    text-align: center;
+}
+
+h3 {
+    font-size: 12px;
 }
 
 .bleed {
@@ -128,14 +133,20 @@ h2 {
     width: 900px;
 }
 
-    .smallsections section, .smallsections > div {
-        float: left;
-        width: 49.2%;
+    .bleed h2 {
+        font-size: 16px;
     }
 
-        .smallsections > div > section {
-            width: 99.6%;
-            margin: .2%;
+    .smallsections section, .smallsections > div {
+        float: left;
+        width: 47.2%;
+    }
+
+        .smallsections > div:last-child {
+            margin-left: 3.2%;
+        }
+
+        .smallsections > div > section {            width: 100%;
         }
 
     .smallsections p {
@@ -199,7 +210,6 @@ h2 {
     }
 
     .phases h2 {
-        font-size: 16px;
         margin-top: -25px;
         text-align: center;
     }
@@ -207,6 +217,44 @@ h2 {
     .phases input[name$='aspect'] {
         font-weight: bold;
     }
+
+.aspects textarea {
+    height: 12ex;
+    width: 85%;
+}
+
+
+.stress p {
+    font-size: 12px;
+}
+
+.stress h3 {
+    font-size: 14px;
+    text-align: left;
+    margin: 0;
+}
+
+.stress dl {clear: both;}
+
+.stress dt {
+    width: 70px;
+    float: left;
+}
+
+.stress dd {
+    text-align: left;
+    margin-top: -4ex;
+    height: 4ex;
+    float: right;
+    width: 83%;
+}
+
+.stress > p {
+    display: block;
+    margin-left: 90px;
+    padding-bottom: 4px;
+    letter-spacing: 16px;
+}
 
 footer {
     text-align: center;
