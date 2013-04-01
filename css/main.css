@@ -10,19 +10,6 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
-html,
-button,
-input,
-select,
-textarea {
-    color: #222;
-}
-
-body {
-    font-size: 1em;
-    line-height: 1.4;
-}
-
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
@@ -40,34 +27,11 @@ body {
 }
 
 /*
- * A better looking default horizontal rule
- */
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-/*
  * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
  */
 
 img {
     vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
 }
 
 /* ==========================================================================
@@ -115,6 +79,10 @@ textarea {
     resize: none;
 }
 
+p {
+    font-size: 12px;
+}
+
 h1 {
     font-size: 18px;
 }
@@ -122,11 +90,17 @@ h1 {
 h2 {
     font-size: 24px;
     margin: 0;
-    margin-top: -.5ex;
 }
 
 h3 {
     font-size: 12px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .bleed {
@@ -153,16 +127,18 @@ h3 {
 
     .smallsections p {
         float: left;
+        font-size: 16px;
         display: inline-block;
         margin: 0;
         padding: 0;
+        padding-top: 5px;
     }
 
     .smallsections input, .smallsections select, .smallsections .input {
         display: block;
         float: right;
         min-height: 24px;
-        width: 14em;
+        width: 240px;
     }
 
 .phases {
@@ -171,9 +147,10 @@ h3 {
 
     .phases section {
         border: 0;
-        border-bottom: 1px #222 solid;
+        border-bottom: 2px #222 solid;
         border-radius: 0;
         margin: 0;
+        margin-top: -15px;
         padding-left: 35px
     }
 
@@ -183,7 +160,7 @@ h3 {
 
     .phases textarea {
         display: block;
-        height: 12ex;
+        height: 100px;
         width: 100%;
     }
 
@@ -194,20 +171,27 @@ h3 {
             font-size: 12px;
             height: 0px;
             text-align: left;
+            position: relative;
+                top: -14px;
         }
 
     .phases h1 {
         display: inline-block;
         font-size: 16px;
+        height: 40px;
+        line-height: 40px;
         margin: 0;
         padding: 0;
+        /* IE fails at positioning this */
         position: relative;
-            right: 815px;
-            top: 62px;
-        text-align: left;
+            right: 810px;
+            top: 68px;
+        text-align: center;
             -webkit-transform: rotate(270deg);
             -moz-transform: rotate(270deg);
             -o-transform: rotate(270deg);
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+        width: 100px;
 
     }
 
@@ -221,7 +205,7 @@ h3 {
     }
 
 .aspects textarea {
-    height: 8ex;
+    height: 110px;
     width: 85%;
 }
 
@@ -250,15 +234,15 @@ h3 {
 
     .stress dd {
         text-align: left;
-        margin-top: -4ex;
-        height: 4ex;
+        margin-top: -36px;
+        height: 36px;
         float: right;
-        width: 83%;
+        width: 81%;
     }
 
     .stress > p {
         display: block;
-        margin-left: 89px;
+        margin-left: 96px;
         padding-bottom: 4px;
         letter-spacing: 16px;
     }
@@ -301,10 +285,13 @@ h3 {
     }
 
     .skills textarea {
-        margin-top: 1ex;
-        height: 6ex;
+        height: 50px;
         float: right;
         width: 80%;
+    }
+
+    .skills p {
+        margin-top: -15px;
     }
 
     .skills input,
@@ -312,17 +299,8 @@ h3 {
         display: inline;
         float: none;
         text-align: center;
-        width: 2em;
+        width: 15px;
     }
-
-        .skills input::-webkit-outer-spin-button,
-        .skills input::-webkit-inner-spin-button,
-        .stunts input::-webkit-outer-spin-button,
-        .stunts input::-webkit-inner-spin-button {
-            display: none;
-                -webkit-appearance: none;
-            margin: 0;
-        }
 
 .stunts{} /* Some defined in skills */
 
@@ -332,7 +310,7 @@ h3 {
     }
 
         .stunts tfoot td {
-            padding-top: 2ex;
+            padding-top: 15px;
         }
 
     .stunts #tot_stunt_refresh {
@@ -346,7 +324,7 @@ h3 {
         }
 
     .stunts textarea {
-        height: 6ex;
+        height: 50px;
         width: 100%;
     }
 
@@ -357,21 +335,22 @@ h3 {
     .ladder {
         border: 1px #000 solid;
         background-color: #FFF !important;
-        height: 30ex;
+        height: 190px;
         float: right;
-        margin-bottom: -31ex;
+        font-size: 10px;
+        margin-bottom: -190px;
         margin-right: 0;
         padding: 4px;;
         position: relative;
-            top: -31ex;
-        width: 90px;
+            top: -205px;
+        width: 21%;
     }
 
         .ladder dt {
             clear: left;
             float: left;
             word-wrap: nowrap;
-            width: 8em;
+            width: 70%;
             text-align: left;
         }
 
@@ -379,8 +358,42 @@ h3 {
             clear: right;
             float: right;
             margin-top: -2.5ex;
-            width: 3em;
+            width: 20%;
             text-align: right;
+        }
+
+    .fate section {
+        border: 0;
+        float: left;
+        line-height: 0px;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        width: 25%;
+    }
+
+    .fate p {
+        clear: left;
+        float: left;
+    }
+
+    .fate select, .fate input, .fate div {
+        clear: right;
+        float: right;
+        font-size: 12px;
+        padding: 1px;
+        margin-top: 4px;
+        margin-right: 4px;
+        width: 100px;
+    }
+
+        .fate div {
+            line-height: 14px;
+            width: 115px;
+        }
+
+        .fate select  {
+            width: 120px;
         }
 
 footer {
@@ -455,39 +468,6 @@ footer {
         color: #000 !important; /* Black prints faster: h5bp.com/s */
         box-shadow: none !important;
         text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links for images, or javascript/internal links
-     */
-
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group; /* h5bp.com/t */
     }
 
     tr,

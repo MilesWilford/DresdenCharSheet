@@ -25,7 +25,9 @@
             <h2>Character Phases Worksheet</h2>
             <header>
                 <h1>Instructions:</h1>
-                <p>The grey boxes can be filled in by the user.  When printing pages, the grey backgrounds will be hidden by CSS magic. </p>
+                <p>The grey boxes can be filled in by the user.  When printing pages, the grey backgrounds will be hidden by CSS magic.</p>
+                <p>Text fields must be 'blurred' (click or tab outside of them) for changes to flow.</p>
+                <p></p>
             </header>
             <div class="smallsections clearfix">
                 <section><p>Character:</p><input name="character" type="text" /></section>
@@ -221,9 +223,6 @@
                             </tbody>
                         </table>
                     </section>
-                    <section class="fate">
-                        &nbsp;
-                    </section>
                 </div>
                 <div> <!-- Right col -->
                     <section><p>Player:</p><div class="input player_name">&nbsp;</div></section>
@@ -342,7 +341,7 @@
                                         min="-5" max="2" step="1" />
                                     </td>
                                     <td>
-                                        <textarea name="stunt6desc" class="shorten"></textarea>
+                                        <textarea name="stunt6desc"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
@@ -404,6 +403,33 @@
                     </section>
                 </div>
             </div>
+            <section class="fate clearfix">
+                <h2>Fate Tracking</h2>
+                <section>
+                    <p>power level</p>
+                    <select name="powerlevel">
+                        <option value="6">Feet in the Water</option>
+                        <option value="7">Up to Your Waist</option>
+                        <option value="8">Chest-Deep</option>
+                        <option value="10">Submerged</option>
+                    </select>
+                    <p>skill cap</p>
+                    <div id="skill_cap">Great (+4)</div>
+                </section>
+                <section>
+                    <p>skill points spent</p>
+                    <p>total available</p>
+                    <div id="skill_points">20</div>
+                </section>
+                <section>
+                    <p>base refresh level</p>
+                    <div id="base_refresh">6</div>
+                    <p>adjusted refresh</p>
+                </section>
+                <section>
+                    <p>current fate points</p>
+                </section>
+            </section>
         </form>
 
         <footer role="contentinfo">
