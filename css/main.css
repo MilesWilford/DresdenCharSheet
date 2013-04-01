@@ -106,13 +106,13 @@ input::-webkit-inner-spin-button {
 #floatingcontroller {
     background-color: #FFF;
     max-width: 322px;
+    max-height: 600px;
 }
 
     .controllerFloats {
         position: fixed;
             top: 0;
             left: 0;
-        z-index: 1;
     }
 
     #floatingcontroller div {
