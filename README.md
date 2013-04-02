@@ -1,7 +1,7 @@
 Dresden Files RPG Character HTML5 Character Sheet
 ================
 
-An HTML5 Web app for making a Dresden RPG character sheet.
+An HTML5 Web app for making a Dresden RPG character sheet.  View it live at: http://mileswilford.github.com/DresdenCharSheet/
 
 It is designed to be filled out in a browser and then printed.  No web server is required - you can download this repo as a .zip and run it locally on your compter from a folder by opening index.html.
 
