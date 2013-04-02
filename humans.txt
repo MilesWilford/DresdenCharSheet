@@ -3,11 +3,13 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Miles Wilford -- Made It -- +Miles Wilford
 
 # THANKS
 
-    <name>
+    HTML5 Boilerplate guys rock
+    Evil Hat
+    Jim Butcher
 
 # TECHNOLOGY COLOPHON
 
