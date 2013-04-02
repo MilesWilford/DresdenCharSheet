@@ -307,6 +307,10 @@ input::-webkit-inner-spin-button {
         text-align: center;
     }
 
+        .consequences input[type="number"] {
+            width: 34px;
+        }
+
     .consequences table {
         width: 100%;
     }
