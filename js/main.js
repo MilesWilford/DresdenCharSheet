@@ -35,24 +35,8 @@ $(document).ready(function() {
         activateStressTracker(stressTrackers[stresses]);
     }
 
-    // Give the checkboxes their functionality
-    $("input[type='checkbox']").click(function() {
-        for (stresses in stressTrackers) {
-            for (i = 0; i < 8; i++) {
-                var currentBoxName = stressTrackers[stresses]    + "box" + i;
-                var currentImg = "#" + stressTrackers[stresses] + " img:nth-of-type(" + (i + 1) + ")";
-                var currentStressbox = "input[name='" + currentBoxName + "']";
-                if ($(currentStressbox).is(':checked')) {
-                    $(currentImg).after('<img src="img/filled_circle.png" />');
-                    $(currentImg).remove();
-                } else {
-                    $(currentImg).after('<img src="img/circle.png" />');
-                    $(currentImg).remove();
-                }
-            }
 
-        }
-    });
+
     /* Changing the powerLevel picklist triggers a few other fields to change */
     $("select[name='powerlevel']").change(function() {
         var selectedVal = parseInt($('option:selected', this).attr('value'));
@@ -136,6 +120,35 @@ $(document).ready(function() {
             getInputValue('cust_base_refresh')
         );
     });
+
+
+    // For the purpose of filling default values, simulate a change
+    $('input').trigger('change');
+    $('select').trigger('change');
+
+    /*
+     * Give the checkboxes their functionality
+     * This needs to happen after our default values are filled or else the
+     * checkboxes simply won't appear in the DOM
+     */
+    $("input[type='checkbox']").click(function() {
+        console.log('click');
+        for (stresses in stressTrackers) {
+            for (i = 0; i < 8; i++) {
+                var currentBoxName = stressTrackers[stresses]    + "box" + i;
+                var currentImg = "#" + stressTrackers[stresses] + " img:nth-of-type(" + (i + 1) + ")";
+                var currentStressbox = "input[name='" + currentBoxName + "']";
+                if ($(currentStressbox).is(':checked')) {
+                    $(currentImg).after('<img src="img/filled_circle.png" />');
+                    $(currentImg).remove();
+                } else {
+                    $(currentImg).after('<img src="img/circle.png" />');
+                    $(currentImg).remove();
+                }
+            }
+
+        }
+    });
 });
 
 /*
@@ -153,15 +166,14 @@ function activateStressTracker(name) {
         $(target).empty();
         $(control).empty();
         if ($(this).val() == 0) {
-            console.log('.' + name);
             $('.' + name).css('display', 'none');
         } else {
             $('.' + name).css('display', 'block');
-        }
-        for (var i = 0; i < $(this).val(); i++) {
-            $(target).append('<img src="img/circle.png" /> ');
-            var checkboxName = name + 'box' + i
-            $(control).append('<input type="checkbox" name="' + checkboxName + '" /> ');
+            for (var i = 0; i < $(this).val(); i++) {
+                $(target).append('<img src="img/circle.png" /> ');
+                var checkboxName = name + 'box' + i
+                $(control).append('<input type="checkbox" name="' + checkboxName + '" /> ');
+            }
         }
     });
 }
