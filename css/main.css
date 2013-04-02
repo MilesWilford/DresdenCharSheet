@@ -297,7 +297,8 @@ input::-webkit-inner-spin-button {
         width: 100%;
     }
 
-.consequences{}
+.consequences{
+}
 
     .instructions {
         background-color: #CCC;
@@ -316,7 +317,9 @@ input::-webkit-inner-spin-button {
     }
 
         .consequences td {
-            padding: 0px 5px;
+            padding: 1px 5px;
+            height: 36px;
+            min-width: 36px;
         }
 
             .consequences td:last-of-type {
