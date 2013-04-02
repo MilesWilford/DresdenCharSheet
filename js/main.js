@@ -53,39 +53,44 @@ $(document).ready(function() {
 
         }
     });
-
     /* Changing the powerLevel picklist triggers a few other fields to change */
     $("select[name='powerlevel']").change(function() {
         var selectedVal = parseInt($('option:selected', this).attr('value'));
         var skillCap, skillPoints;
         switch (selectedVal) {
-            case 6:
+            case -1:
+                $('#custom_fate').slideDown('fast');
+                break;
+            default:// case 6
                 skillCap = 'Great (+4)';
                 skillPoints = '20';
+                updatePowerLevel(skillCap, skillPoints, selectedVal);
+                $('#custom_fate').slideUp('fast');
                 break;
             case 7:
                 skillCap = 'Great (+4)';
                 skillPoints = '25';
+                updatePowerLevel(skillCap, skillPoints, selectedVal);
+                $('#custom_fate').slideUp('fast');
                 break;
             case 8:
                 skillCap = 'Superb (+5)';
                 skillPoints = '30';
+                updatePowerLevel(skillCap, skillPoints, selectedVal);
+                $('#custom_fate').slideUp('fast');
                 break;
             case 10:
                 skillCap = 'Superb (+5)';
                 skillPoints = '35';
+                updatePowerLevel(skillCap, skillPoints, selectedVal);
+                $('#custom_fate').slideUp('fast');
                 break;
         }
-        $('#skill_cap').html(skillCap);
-        $('#skill_points').html(skillPoints);
-        $('#base_refresh').html(selectedVal);
-        updateAdjustedRefresh()
-        updateSkillPointsRemaining();
     });
 
     /*
      * Detects changes in all text fields which get copied to other fields
-     * It is easiest to just acknoledge changes in any input.
+     * It is easiest to just acknowledge changes in any input.
      * No textarea contains text that get copied
      */
     $("input").change(function() {
@@ -98,10 +103,10 @@ $(document).ready(function() {
         dupfields.push($('.trouble'));
 
         var dup_source = [];
-        dup_source.push($("input[name='character']").val());
-        dup_source.push($("input[name='player']").val());
-        dup_source.push($("input[name='high_concept']").val());
-        dup_source.push($("input[name='trouble']").val());
+        dup_source.push(getInputValue('character'));
+        dup_source.push(getInputValue('player'));
+        dup_source.push(getInputValue('high_concept'));
+        dup_source.push(getInputValue('trouble'));
 
         if (dupfields.length == dup_source.length) {
             for (x in dupfields) {
@@ -122,6 +127,14 @@ $(document).ready(function() {
         $("#tot_stunt_refresh").html(refreshCostCount);
         updateAdjustedRefresh();
         updateSkillPointsRemaining();
+    });
+
+    $('#custom_fate input').change(function() {
+        updatePowerLevel(
+            getInputValue('cust_skill_cap'),
+            getInputValue('cust_total_skills'),
+            getInputValue('cust_base_refresh')
+        );
     });
 });
 
@@ -231,4 +244,19 @@ function updateSkillPointsRemaining() {
     });
     $('#skill_points_spent').html(countSkillSum);
     $('#skill_point_counter p').html(parseInt($('#skill_points').text()) - countSkillSum);
+}
+
+
+// This function executed changes when the user adjusts his power level
+function updatePowerLevel(skillCap, skillPoints, baseRefresh) {
+    $('#skill_cap').html(skillCap);
+    $('#skill_points').html(skillPoints);
+    $('#base_refresh').html(baseRefresh);
+    updateAdjustedRefresh()
+    updateSkillPointsRemaining();
+}
+
+// I find myself needing input values based on names altogether too frequently.
+function getInputValue(name) {
+    return $("input[name='" + name + "']").val();
 }

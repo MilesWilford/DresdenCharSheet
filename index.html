@@ -512,6 +512,7 @@
                         <option value="7">Up to Your Waist</option>
                         <option value="8">Chest-Deep</option>
                         <option value="10">Submerged</option>
+                        <option value="-1">Custom</option>
                     </select>
                     <p>skill cap</p>
                     <div id="skill_cap">Great (+4)</div>
@@ -531,6 +532,21 @@
                 <section>
                     <p>current fate points</p>
                     <input type="number" min="-10" max="20" size="2" name="fate_points" />
+                </section>
+            </section>
+            <section id="custom_fate" class="fate clearfix">
+                <h1>Custom Fate Settings</h1>
+                <section>
+                    <p>Custom Base Refresh</p>
+                    <input name="cust_base_refresh" type="number" min="-20" max="100" step="1" />
+                </section>
+                <section>
+                    <p>Custom Total Skillpoints</p>
+                    <input name="cust_total_skills" type="number" min="-20" max="100" step="1" />
+                </section>
+                <section>
+                    <p>Custom Skill Cap</p>
+                    <input name="cust_skill_cap" type="text" />
                 </section>
             </section>
         </form>
