@@ -11,6 +11,15 @@ $(document).ready(function() {
         positionController();
     });
 
+    // Let the user toggle the circle images in the sheet
+    $('.consequences img').click(function() {
+        if ($(this).attr('src') == 'img/circle.png') {
+            $(this).attr('src', 'img/filled_circle.png');
+        } else if ($(this).attr('src') == 'img/filled_circle.png') {
+            $(this).attr('src', 'img/circle.png');
+        }
+    });
+
     /*
      * Activate all the max stress boxes.
      * To keep code easy to maintain, we use this array to keep track
@@ -206,13 +215,13 @@ function updateAdjustedRefresh() {
         + parseInt($("#tot_stunt_refresh").text()));
 }
 
+/*
+ *  This part is for ounting skill points spent
+ *  We'll gather all the inputs in .skills, make an array of their names,
+ *  then multiply the number of slots by the corresponding shift to get
+ *  the sum of skill points spent.
+ */
 function updateSkillPointsRemaining() {
-    /*
-     *  This part is for ounting skill points spent
-     *  We'll gather all the inputs in .skills, make an array of their names,
-     *  then multiply the number of slots by the corresponding shift to get
-     *  the sum of skill points spent.
-     */
     var countSkillSum = 0;
     $('.skills input').each(function() {
         var inputName = $(this).attr('name');

@@ -49,7 +49,6 @@ img {
    Author's custom styles
    ========================================================================== */
 html, body, input, textarea, select {
-    font-variant: small-caps;
 }
 
 body {
@@ -298,6 +297,12 @@ input::-webkit-inner-spin-button {
         width: 100%;
     }
 
+.consequences{}
+
+    .instructions {
+        background-color: #CCC;
+    }
+
     .consequences input {
         text-align: center;
     }
@@ -396,7 +401,7 @@ input::-webkit-inner-spin-button {
         height: 190px;
         float: right;
         font-size: 10px;
-        margin-bottom: -190px;
+        margin-bottom: -210px;
         margin-right: 0;
         padding: 4px;;
         position: relative;
@@ -524,7 +529,13 @@ footer {
     /* Page break definitions */
    .phases {page-break-after: always;}
 
-    header, footer, #floatingcontroller, #skill_point_counter {display: none;}
+    header,
+    footer,
+    #floatingcontroller,
+    #skill_point_counter,
+    .instructions {
+        display: none;
+    }
 
     * {
         background: transparent !important;
