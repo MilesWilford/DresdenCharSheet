@@ -25,10 +25,13 @@
             <h2>Character Phases Worksheet</h2>
             <header>
                 <h1>Instructions:</h1>
-                <p>The grey boxes can be filled in by the user.  When printing pages, the grey backgrounds will be hidden by CSS magic.</p>
-                <p>Text fields must be 'blurred' (click or tab outside of them) for changes to flow.</p>
-                <p>Use a modern browser for best results.  Internet Explorer fails on some of the CSS techniques used here.</p>
-                <p>I will eventually make a more mobile-friendly layout, but this one is not very friendly on small screens.</p>
+                <ul>
+                    <li>The grey boxes can be filled in by the user. When printing pages, the grey backgrounds will be hidden by CSS magic.</li>
+                    <li>Text fields must be 'blurred' (click or tab outside of them) for changes to flow.</li>
+                    <li>Use a modern browser for best results. Internet Explorer fails on some of the CSS techniques used here.</li>
+                    <li>I will eventually make a more mobile-friendly layout, but this one is not very friendly on small screens.</li>
+                    <li>Zero out any stress's max to remove the track from your character sheet.</li>
+                </ul>
             </header>
             <div class="smallsections clearfix">
                 <section><p>Character:</p><input name="character" type="text" /></section>
@@ -150,7 +153,6 @@
                 </section>
                 <section>
                     <p>Max Hungr</p>
-                    <p><small>0 for no hunger</small></p>
                     <input type="number" min="0" max="8" step="1" name="max_hunger_stress" />
                 </section>
             </section>
@@ -306,47 +308,51 @@
                     <section><p>Player:</p><div class="input player_name">&nbsp;</div></section>
                     <section class="skills">
                         <h2>Skills</h2>
+                        <div id="skill_point_counter">
+                            <h1>Skill Points Remaining</h1>
+                            <p>20</p>
+                        </div>
                         <section>
-                            <textarea name="skills5"></textarea>
+                            <textarea name="skills_5"></textarea>
                             <h3>Superb (+5)</h3>
                             <p>
-                                <input name="skillsqt5" type="number"
+                                <input name="skill_slot_5" type="number"
                                     size="1" min="0" max="10" step="1" />
                                 slots
                             </p>
                             </section>
                         <section>
-                            <textarea name="skills4"></textarea>
+                            <textarea name="skills_4"></textarea>
                             <h3>Great (+4)</h3>
                             <p>
-                                <input name="skillsqt4" type="number"
+                                <input name="skill_slot_4" type="number"
                                     size="1" min="0" max="10" step="1" />
                                 slots
                             </p>
                             </section>
                         <section>
-                            <textarea name="skills3"></textarea>
+                            <textarea name="skills_3"></textarea>
                             <h3>Good (+3)</h3>
                             <p>
-                                <input name="skillsqt3" type="number"
+                                <input name="skill_slot_3" type="number"
                                     size="1" min="0" max="10" step="1" />
                                 slots
                             </p>
                             </section>
                         <section>
-                            <textarea name="skills2"></textarea>
+                            <textarea name="skill_2"></textarea>
                             <h3>Fair (+2)</h3>
                             <p>
-                                <input name="skillsqt2" type="number"
+                                <input name="skill_slot_2" type="number"
                                     size="1" min="0" max="10" step="1" />
                                 slots
                             </p>
                             </section>
                         <section>
-                            <textarea name="skills1"></textarea>
+                            <textarea name="skills_1"></textarea>
                             <h3>Average (+1)</h3>
                             <p>
-                                <input name="skillsqt1" type="number"
+                                <input name="skill_slot_1" type="number"
                                     size="1" min="0" max="10" step="1" />
                                 slots
                             </p>
@@ -370,8 +376,8 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <input name="stunt1cost" type="number" size="1"
-                                        min="-5" max="2" step="1" />
+                                        <input name="stunt1cost"  type="number" size="1"
+                                        min="-5" max="6" step="1" />
                                     </td>
                                     <td>
                                         <textarea name="stunt1desc"></textarea>
@@ -379,8 +385,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input name="stunt2cost" type="number" size="1"
-                                        min="-5" max="2" step="1" />
+                                        <input name="stunt2cost"  type="number" size="1"
+                                        min="-5" max="6" step="1" />
                                     </td>
                                     <td>
                                         <textarea name="stun21desc"></textarea>
@@ -388,8 +394,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input name="stunt3cost" type="number" size="1"
-                                        min="-5" max="2" step="1" />
+                                        <input name="stunt3cost"  type="number" size="1"
+                                        min="-5" max="6" step="1" />
                                     </td>
                                     <td>
                                         <textarea name="stunt3desc"></textarea>
@@ -397,8 +403,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input name="stunt4cost" type="number" size="1"
-                                        min="-5" max="2" step="1" />
+                                        <input name="stunt4cost"  type="number" size="1"
+                                        min="-5" max="6" step="1" />
                                     </td>
                                     <td>
                                         <textarea name="stunt4desc"></textarea>
@@ -406,8 +412,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input name="stunt5cost" type="number" size="1"
-                                        min="-5" max="2" step="1" />
+                                        <input name="stunt5cost"  type="number" size="1"
+                                        min="-5" max="6" step="1" />
                                     </td>
                                     <td>
                                         <textarea name="stunt5desc"></textarea>
@@ -415,8 +421,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input name="stunt6cost" type="number" size="1"
-                                        min="-5" max="2" step="1" />
+                                        <input name="stunt6cost"  type="number" size="1"
+                                        min="-5" max="6" step="1" />
                                     </td>
                                     <td>
                                         <textarea name="stunt6desc"></textarea>
@@ -424,8 +430,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input name="stunt7cost" type="number" size="1"
-                                        min="-5" max="2" step="1" />
+                                        <input name="stunt7cost"  type="number" size="1"
+                                        min="-5" max="6" step="1" />
                                     </td>
                                     <td>
                                         <textarea name="stunt7desc" class="shorten"></textarea>
@@ -433,8 +439,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input name="stunt8cost" type="number" size="1"
-                                        min="-5" max="2" step="1" />
+                                        <input name="stunt8cost"  type="number" size="1"
+                                        min="-5" max="6" step="1" />
                                     </td>
                                     <td>
                                         <textarea name="stunt8desc" class="shorten"></textarea>
@@ -442,8 +448,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input name="stunt9cost" type="number" size="1"
-                                        min="-5" max="2" step="1" />
+                                        <input name="stunt9cost"  type="number" size="1"
+                                        min="-5" max="6" step="1" />
                                     </td>
                                     <td>
                                         <textarea name="stunt9desc" class="shorten"></textarea>
@@ -496,6 +502,7 @@
                 </section>
                 <section>
                     <p>skill points spent</p>
+                    <div id="skill_points_spent">0</div>
                     <p>total available</p>
                     <div id="skill_points">20</div>
                 </section>
@@ -503,9 +510,11 @@
                     <p>base refresh level</p>
                     <div id="base_refresh">6</div>
                     <p>adjusted refresh</p>
+                    <div id="adj_refresh">6</div>
                 </section>
                 <section>
                     <p>current fate points</p>
+                    <input type="number" min="-10" max="20" size="2" name="fate_points" />
                 </section>
             </section>
         </form>

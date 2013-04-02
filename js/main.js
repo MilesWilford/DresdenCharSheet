@@ -70,6 +70,8 @@ $(document).ready(function() {
         $('#skill_cap').html(skillCap);
         $('#skill_points').html(skillPoints);
         $('#base_refresh').html(selectedVal);
+        updateAdjustedRefresh()
+        updateSkillPointsRemaining();
     });
 
     /*
@@ -108,7 +110,9 @@ $(document).ready(function() {
                 refreshCostCount += parseInt($(this).val());
             }
         });
-        $("#tot_stunt_refresh").html(Math.abs(refreshCostCount));
+        $("#tot_stunt_refresh").html(refreshCostCount);
+        updateAdjustedRefresh();
+        updateSkillPointsRemaining();
     });
 });
 
@@ -195,4 +199,27 @@ function preloadImages(imgArray) {
     $(imgArray).each(function() {
         (new Image()).src = this;
     });
+}
+
+function updateAdjustedRefresh() {
+    $("#adj_refresh").html(parseInt($('#base_refresh').text())
+        + parseInt($("#tot_stunt_refresh").text()));
+}
+
+function updateSkillPointsRemaining() {
+    /*
+     *  This part is for ounting skill points spent
+     *  We'll gather all the inputs in .skills, make an array of their names,
+     *  then multiply the number of slots by the corresponding shift to get
+     *  the sum of skill points spent.
+     */
+    var countSkillSum = 0;
+    $('.skills input').each(function() {
+        var inputName = $(this).attr('name');
+        var multiplier = parseInt(inputName.substr(inputName.length - 1));
+        var inputValue = $(this).val();
+        countSkillSum += multiplier * inputValue;
+    });
+    $('#skill_points_spent').html(countSkillSum);
+    $('#skill_point_counter p').html(parseInt($('#skill_points').text()) - countSkillSum);
 }
