@@ -3,7 +3,9 @@ Dresden Files RPG Character HTML5 Character Sheet
 
 An HTML5 Web app for making a Dresden RPG character sheet.
 
-It is designed to be filled out in a browser and then printed.  No web server is required - you can download this repo as a .zip and run it locally on your compter.  It should consistently print to 2 pages (although I have been trying to get rid of a nusance blank third page).
+It is designed to be filled out in a browser and then printed.  No web server is required - you can download this repo as a .zip and run it locally on your compter from a folder by opening index.html.
+
+It should consistently print to 2 pages (although I have been trying to get rid of a nusance blank third page).
 
 There's a small amount of logic built into the sheet to make it easier, such as counting skill slots purchased, changing max stress, flowing some power level data to the sheet, and that kind of thing.
 
