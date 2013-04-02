@@ -475,7 +475,11 @@ input::-webkit-inner-spin-button {
 }
 
     #custom_fate section {
-        width: 30%;
+        width: 33%;
+    }
+
+    #custom_fate input {
+        margin-right: 30px;
     }
 
 footer {

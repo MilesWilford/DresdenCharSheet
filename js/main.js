@@ -146,6 +146,9 @@ function activateStressTracker(name) {
     var source = "input[name='max_" + name + "']";
     var target = "#" + name;
     var control = "#control_" + name;
+    if (!$(source).val()) {
+        $(source).val('8');
+    }
     $(source).change(function() {
         $(target).empty();
         $(control).empty();
