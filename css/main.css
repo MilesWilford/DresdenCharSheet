@@ -59,11 +59,11 @@ header {
     text-align: center;
 }
 
-section, header, .section > div, .ladder, #skill_point_counter {
+section, header, .section > div, .ladder {
     border: 1px #000 solid;
     border-radius: 12px;
     padding: 8px;
-    margin: 5px auto;
+    margin: .4%;
 }
 
 input, select, textarea {
@@ -342,20 +342,6 @@ input::-webkit-inner-spin-button {
     .consequences input {width: 100%;}
 
 .skills {}
-
-    #skill_point_counter {
-        text-align: center;
-        margin: 0 auto;
-        width: 150px;
-    }
-
-        #skill_point_counter h1 {
-            margin-top: 0;
-        }
-
-        #skill_point_counter p {
-            width: 100%;
-        }
 
     .skills section {
         border: 0;
