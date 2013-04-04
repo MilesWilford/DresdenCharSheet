@@ -5,16 +5,13 @@ $(document).ready(function() {
         'img/filled_circle.png'
     ]);
 
-    var ladder_terms = $.makeArray($('#ladder_definition dd').each(function() {
+    var ladder_terms = $.makeArray($('#ladder_definition dd').map(function() {
         return parseInt($(this).text());
     }));
-    console.log(ladder_terms);
 
-    var ladder_values = $.makeArray($('#ladder_definition dt').each(function() {
+    var ladder_values = $.makeArray($('#ladder_definition dt').map(function() {
         return $(this).text();
     }));
-    console.log(ladder_values);
-
     // Controller section needs to be positioned on load and on resize
     positionController();
     $(window).resize(function() {
