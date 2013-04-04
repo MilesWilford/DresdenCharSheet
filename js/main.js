@@ -116,7 +116,7 @@ $(document).ready(function() {
             inputValueOf('cust_skill_cap'),
             inputValueOf('cust_total_skills'),
             inputValueOf('cust_base_refresh')
-        +);
+        );
     });
 
     // For the purpose of filling default values, simulate a change
