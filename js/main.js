@@ -31,7 +31,7 @@ $(document).ready(function() {
             $(source).val('8');
         }
 
-        for (var i = 0; i < 9; i++) {
+        for (var i = 0; i < 8; i++) {
             $(target).append('<div></div>');
         }
 
@@ -122,7 +122,8 @@ $(document).ready(function() {
     $('input').trigger('change');
     $('select').trigger('change');
 
-    // Let the user toggle the circle images in the sheet by clickign the divs
+    // Let the user toggle the circle images in the sheet by clickinn the divs
+    // this must be placed after all defaults are filled.
     $('div.imgRadioActive').click(function() {
         $(this).toggleClass('imgRadioMarked');
     });
@@ -233,11 +234,4 @@ function skillLevelForShift(shiftInt) {
 // I find myself needing input values based on names altogether too frequently.
 function inputValueOf(name) {
     return $("input[name='" + name + "']").val();
-}
-
-// Let's work on storing data
-function storeData() {
-    $('input, textarea, select').each(function() {
-        console.log($(this).attr('name'));
-    });
 }
