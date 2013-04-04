@@ -20,11 +20,8 @@ $(document).ready(function() {
         }
     });
 
-    /*
-     * Activate all the max stress boxes.
-     * To keep code easy to maintain, we use this array to keep track
-     * of our trackers
-     */
+
+    // Here's our stress trackers
     var stressTrackers = [
         'phys_stress',
         'ment_stress',
@@ -32,13 +29,11 @@ $(document).ready(function() {
         'hunger_stress'
     ];
 
-    for (stresses in stressTrackers) {
-        activateStressTracker(stressTrackers[stresses]);
-    }
+    // Activate our stress trackers
+    stressTrackers.map(activateStressTracker);
 
 
-
-    /* Changing the powerLevel picklist triggers a few other fields to change */
+    // Changing the powerLevel picklist triggers a few other fields to change
     $("select[name='powerlevel']").change(function() {
         var selectedVal = parseInt($('option:selected', this).attr('value'));
         var skillCap, skillPoints;
@@ -124,7 +119,6 @@ $(document).ready(function() {
      * checkboxes simply won't appear in the DOM
      */
     $("input[type='checkbox']").click(function() {
-        console.log('click');
         for (stresses in stressTrackers) {
             for (i = 0; i < 8; i++) {
                 var currentBoxName = stressTrackers[stresses]    + "box" + i;
@@ -181,8 +175,7 @@ function positionController() {
     controller.width(widthTarget);
 
     if (bleedLeftOffset > (widthTarget / 2) && bleedLeftOffset < widthTarget) {
-    console.log('1 col');
-        // This is a case where we will display 1-column controller
+        // This is a case where we will display 1-column controller (specifically useful for 720p screens)
         controller.width((widthTarget / 2) + 10); // +10 to add padding for visible scrollbar
         controller.removeClass('clearfix');
         controller.addClass('controllerFloats');
@@ -190,14 +183,12 @@ function positionController() {
         controller.css('overflow-y', 'scroll');
     }
     else if (bleedLeftOffset < widthTarget) {
-    console.log('center');
         // This is a case for a window too narrow for any fixed display
         controller.addClass('clearfix');
         controller.removeClass('controllerFloats');
         controller.css('overflow-y', 'visible');
         controller.css('width', '73%');
     } else {
-    console.log('2 col');
         // This is the case for dispalys that have proper widths with 2 columns
         controller.removeClass('clearfix');
         controller.addClass('controllerFloats');
