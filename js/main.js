@@ -31,6 +31,7 @@ $(document).ready(function() {
         'soc_stress',
         'hunger_stress'
     ];
+
     for (stresses in stressTrackers) {
         activateStressTracker(stressTrackers[stresses]);
     }
@@ -79,28 +80,19 @@ $(document).ready(function() {
      */
     $("input").change(function() {
 
-        //TODO: these two arrays would be better as one associative array
-        var dupfields = [];
-        dupfields.push($('.char_name'));
-        dupfields.push($('.player_name'));
-        dupfields.push($('.high_concept'));
-        dupfields.push($('.trouble'));
+        // Classes (key side) represent targets to fill with code from inputs (value side)
+        var dupFields = [
+            [$('.char_name'), getInputValue('character')],
+            [$('.player_name'), getInputValue('player')],
+            [$('.high_concept'), getInputValue('high_concept')],
+            [$('.trouble'), getInputValue('trouble')]
+        ];
 
-        var dup_source = [];
-        dup_source.push(getInputValue('character'));
-        dup_source.push(getInputValue('player'));
-        dup_source.push(getInputValue('high_concept'));
-        dup_source.push(getInputValue('trouble'));
-
-        if (dupfields.length == dup_source.length) {
-            for (x in dupfields) {
-                if (dup_source[x]) {
-                    dupfields[x].html(dup_source[x]);
-                }
-            }
+        for (pair in dupFields) {
+            dupFields[pair][0].html(dupFields[pair][1]);
         }
 
-        /* Sums up refresh cost counts of powers & stunts in bottom field */
+        // Sums up refresh cost counts of powers & stunts in bottom field
         var refreshCostCount = 0;
         $(".stunts input[name$='cost']").each(function() {
             var inputValue = parseInt($(this).val());
@@ -149,6 +141,7 @@ $(document).ready(function() {
 
         }
     });
+    storeData();
 });
 
 /*
@@ -178,69 +171,53 @@ function activateStressTracker(name) {
     });
 }
 
-// This function positions or unfixes the #floatingcontroller section
+// This function positions or unfixes the #floatingcontroller section.
 function positionController() {
     var widthTarget = 322;
+
+    // Find how far the left bleed edge is from the window edge
+    var bleedLeftOffset = $('.bleed').offset().left;
     var controller = $('#floatingcontroller');
     controller.width(widthTarget);
-    var controllerWidth = getTrueWidth(controller);
-    /*
-     * The alignment is half the window innerwidth (the screen midpoint)
-     * minus the width of the page wrapper (which I named with the class bleed)
-     * minus the width of the controller element including margins and padding
-     * minus a fixed nuber (16) which fine-tunes the position
-     */
-    var controllerAlignment = window.innerWidth / 2
-                            - $('.bleed').width() / 2
-                            - controllerWidth
-                            - 16;
 
-    var availableMargins = window.innerWidth - $('.bleed').width();
-    availableMargins /= 2;
-
-    if (availableMargins > controllerWidth / 2 && availableMargins < controllerWidth) {
-        /* This is a case where we will display 1-column controller */
-        controller.width(controllerWidth / 2);
+    if (bleedLeftOffset > (widthTarget / 2) && bleedLeftOffset < widthTarget) {
+    console.log('1 col');
+        // This is a case where we will display 1-column controller
+        controller.width((widthTarget / 2) + 10); // +10 to add padding for visible scrollbar
         controller.removeClass('clearfix');
         controller.addClass('controllerFloats');
+        controller.css('left', bleedLeftOffset - controller.outerWidth() + 'px');
         controller.css('overflow-y', 'scroll');
-        // To account for the added scrollbar, I had to fine-tune placement with -18
-        controller.css('left', controllerAlignment - 18 + (controllerWidth / 2) + 'px');
     }
-    else if (availableMargins < controllerWidth) {
-        /* This is a case for a window to narrow for any fixed display */
+    else if (bleedLeftOffset < widthTarget) {
+    console.log('center');
+        // This is a case for a window too narrow for any fixed display
         controller.addClass('clearfix');
         controller.removeClass('controllerFloats');
         controller.css('overflow-y', 'visible');
-        controller.css('width', '80%');
+        controller.css('width', '73%');
     } else {
-        /* This is the case for dispalys that have proper widths with 2 columns */
+    console.log('2 col');
+        // This is the case for dispalys that have proper widths with 2 columns
         controller.removeClass('clearfix');
         controller.addClass('controllerFloats');
-        controller.css('left', controllerAlignment + 'px');
+        controller.css('left', bleedLeftOffset - controller.outerWidth() + 'px');
         controller.css('overflow-y', 'visible');
     }
 }
 
-// This function basically gives us box-sizing without browser compat issues
-function getTrueWidth(element) {
-    var trueWidth = 0;
-    trueWidth += (parseInt(element.css('margin-left').replace("px", ""))) * 2;
-    trueWidth += (parseInt(element.css('padding-left').replace("px", ""))) * 2;
-    trueWidth += element.width();
-    return trueWidth;
-}
-
-// Pre-fetch image content
-function preloadImages(imgArray) {
-    $(imgArray).each(function() {
-        (new Image()).src = this;
-    });
-}
-
+/*
+ * Updated the Adjusted Refresh field by adding base reflex to amount spent
+ * on stunts/powers, which should be a negative number.
+ */
 function updateAdjustedRefresh() {
-    $("#adj_refresh").html(parseInt($('#base_refresh').text())
-        + parseInt($("#tot_stunt_refresh").text()));
+    var adjRefTarget = $("#adj_refresh");
+    var baseRef = parseInt($('#base_refresh').text())
+    var totStuntRef = parseInt($("#tot_stunt_refresh").text())
+
+    var newAdjRef = baseRef + totStuntRef;
+
+    adjRefTarget.html(newAdjRef);
 }
 
 /*
@@ -264,9 +241,16 @@ function updateSkillPointsRemaining() {
 
 // This function executed changes when the user adjusts his power level
 function updatePowerLevel(skillCap, skillPoints, baseRefresh) {
+    if (!skillPoints) {
+        skillPoints = 0;
+    }
+    if (!baseRefresh) {
+        baseRefresh = 0;
+    }
     $('#skill_cap').html(skillCap);
     $('#skill_points').html(skillPoints);
     $('#base_refresh').html(baseRefresh);
+
     updateAdjustedRefresh()
     updateSkillPointsRemaining();
 }
@@ -274,4 +258,18 @@ function updatePowerLevel(skillCap, skillPoints, baseRefresh) {
 // I find myself needing input values based on names altogether too frequently.
 function getInputValue(name) {
     return $("input[name='" + name + "']").val();
+}
+
+// Pre-fetch image content
+function preloadImages(imgArray) {
+    $(imgArray).each(function() {
+        (new Image()).src = this;
+    });
+}
+
+// Let's work on storing data
+function storeData() {
+    $('input, textarea, select').each(function() {
+        //console.log($(this).attr('name'));
+    });
 }

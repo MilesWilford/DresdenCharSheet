@@ -104,7 +104,11 @@ input::-webkit-inner-spin-button {
 
 #floatingcontroller {
     background-color: #CCC;
-    /* This element's width is set in javascript by positionController */
+    margin: 15px auto 0;
+    /*
+     * This element has propertiesset in javascript by positionController
+     * Specifically: width, overflow, and left (position) depending on screen size
+     */
 }
 
     .controllerFloats {
