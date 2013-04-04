@@ -3,7 +3,7 @@ $(document).ready(function() {
     [
         'img/circle.png',
         'img/filled_circle.png'
-    ].map(function(image) {
+    ].forEach(function(image) {
         (new Image()).src = image;
     });
 
@@ -24,7 +24,7 @@ $(document).ready(function() {
      * This function activates features in #floatingcontroller that allow the user
      * to manage max stress
      */
-    stressTracks.map(function(name) {
+    stressTracks.forEach(function(name) {
         var source = "input[name='max_" + name + "']";
         var target = "#" + name;
         if (!$(source).val()) {
@@ -90,7 +90,7 @@ $(document).ready(function() {
             ['.player_name', 'player'],
             ['.high_concept', 'high_concept'],
             ['.trouble', 'trouble']
-        ].map(function(args) {
+        ].forEach(function(args) {
             $(args[0]).html(inputValueOf(args[1]));
         });
 
