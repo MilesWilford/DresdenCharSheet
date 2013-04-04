@@ -261,6 +261,6 @@ function preloadImages(imgArray) {
 // Let's work on storing data
 function storeData() {
     $('input, textarea, select').each(function() {
-        //console.log($(this).attr('name'));
+        console.log($(this).attr('name'));
     });
 }
