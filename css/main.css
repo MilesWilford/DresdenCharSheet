@@ -110,7 +110,9 @@ input::-webkit-inner-spin-button {
     width: 36px;
 }
 
-.imgRadioMarked {background: url('../img/filled_circle.png') !important;}
+.imgRadioMarked {
+    background: url('../img/filled_circle.png');
+}
 
 .instructions {
     background-color: #CCC;

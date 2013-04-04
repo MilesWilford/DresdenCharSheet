@@ -43,7 +43,6 @@ $(document).ready(function() {
                 $(target + ' div').removeClass('imgRadioActive');
                 for (var i = 0; i < $(this).val(); i++) {
                     $(target + ' div:nth-of-type(' + (i + 1) + ')').addClass('imgRadioActive');
-                    //$(target).append('<div class="imgRadioActive">&nbsp;</div>');
                 }
             }
         });
@@ -53,7 +52,6 @@ $(document).ready(function() {
     // Changing the powerLevel picklist triggers a few other fields to change
     $("select[name='powerlevel']").change(function() {
         var selectedVal = parseInt($('option:selected', this).attr('value'));
-        var skillCap, skillPoints;
         switch (selectedVal) {
             case -1:
                 $('#custom_fate').slideDown('fast');
@@ -98,24 +96,25 @@ $(document).ready(function() {
 
         // Sums up refresh cost counts of powers & stunts in bottom field
         var refreshCostCount = 0;
+        // The fields are named consistently, in the form stunt_n_cost
         $(".stunts input[name$='cost']").each(function() {
             var inputValue = parseInt($(this).val());
+            // Double-check that there is an actual number here, otherwise we can treat it as 0
             if (!isNaN(inputValue)) {
                 refreshCostCount += parseInt($(this).val());
             }
         });
         $("#tot_stunt_refresh").html(refreshCostCount);
+
         updateAdjustedRefresh();
         updateSkillPointsRemaining();
     });
 
-    $('#custom_fate input').change(function() {
-        updatePowerLevel(
-            inputValueOf('cust_skill_cap'),
-            inputValueOf('cust_total_skills'),
-            inputValueOf('cust_base_refresh')
-        );
-    });
+    $('#custom_fate input').change(updatePowerLevel.apply(null, [
+        'cust_skill_cap',
+        'cust_total_skills',
+        'cust_base_refresh'
+    ].map(inputValueOf)));
 
 
     // For the purpose of filling default values, simulate a change
@@ -144,21 +143,27 @@ function positionController() {
         controller.width((widthTarget / 2) + 10); // +10 to add padding for visible scrollbar
         controller.removeClass('clearfix');
         controller.addClass('controllerFloats');
-        controller.css('left', bleedLeftOffset - controller.outerWidth() + 'px');
-        controller.css('overflow-y', 'scroll');
+        controller.css({
+            'left' : bleedLeftOffset - controller.outerWidth() + 'px',
+            'overflow-y' : 'scroll'
+        });
     }
     else if (bleedLeftOffset < widthTarget) {
         // This is a case for a window too narrow for any fixed display
         controller.addClass('clearfix');
         controller.removeClass('controllerFloats');
-        controller.css('overflow-y', 'visible');
-        controller.css('width', '73%');
+        controller.css({
+            'overflow-y' : 'visible',
+            'width' : '73%'
+        });
     } else {
         // This is the case for dispalys that have proper widths with 2 columns
         controller.removeClass('clearfix');
         controller.addClass('controllerFloats');
-        controller.css('left', bleedLeftOffset - controller.outerWidth() + 'px');
-        controller.css('overflow-y', 'visible');
+        controller.css({
+            'left' : bleedLeftOffset - controller.outerWidth() + 'px',
+            'overflow-y' : 'visible'
+        });
     }
 }
 
@@ -181,6 +186,7 @@ function updateAdjustedRefresh() {
  *  We'll gather all the inputs in .skills, make an array of their names,
  *  then multiply the number of slots by the corresponding shift to get
  *  the sum of skill points spent.
+ *  TODO: would this by better achieved with a reduce()?
  */
 function updateSkillPointsRemaining() {
     var countSkillSum = 0;
