@@ -1,26 +1,18 @@
 $(document).ready(function() {
     // Pre-cache images
-    preloadImages([
+    [
         'img/circle.png',
         'img/filled_circle.png'
-    ]);
+    ].map(function(image) {
+        (new Image()).src = image;
+    });
 
-    // Controller section needs to be positioned on ready and on resize
+    // Controller section needs to be positioned on ready *and* on window resize
     positionController();
     $(window).resize(positionController);
 
-    // Let the user toggle the circle images in the sheet
-    $('.consequences img').click(function() {
-        if ($(this).attr('src') == 'img/circle.png') {
-            $(this).attr('src', 'img/filled_circle.png');
-        } else if ($(this).attr('src') == 'img/filled_circle.png') {
-            $(this).attr('src', 'img/circle.png');
-        }
-    });
-
-
-    // Here's our stress trackers
-    var stressTrackers = [
+    // Define the stress tracks
+    var stressTracks = [
         'phys_stress',
         'ment_stress',
         'soc_stress',
@@ -30,26 +22,28 @@ $(document).ready(function() {
     /*
      * Activate our stress trackers
      * This function activates features in #floatingcontroller that allow the user
-     * to manage max stress and deal stress damage.
+     * to manage max stress
      */
-    stressTrackers.map(function(name) {
+    stressTracks.map(function(name) {
         var source = "input[name='max_" + name + "']";
         var target = "#" + name;
-        var control = "#control_" + name;
         if (!$(source).val()) {
             $(source).val('8');
         }
+
+        for (var i = 0; i < 9; i++) {
+            $(target).append('<div></div>');
+        }
+
         $(source).change(function() {
-            $(target).empty();
-            $(control).empty();
             if ($(this).val() == 0) {
                 $('.' + name).css('display', 'none');
             } else {
                 $('.' + name).css('display', 'block');
+                $(target + ' div').removeClass('imgRadioActive');
                 for (var i = 0; i < $(this).val(); i++) {
-                    $(target).append('<img src="img/circle.png" /> ');
-                    var checkboxName = name + 'box' + i
-                    $(control).append('<input type="checkbox" name="' + checkboxName + '" /> ');
+                    $(target + ' div:nth-of-type(' + (i + 1) + ')').addClass('imgRadioActive');
+                    //$(target).append('<div class="imgRadioActive">&nbsp;</div>');
                 }
             }
         });
@@ -89,7 +83,6 @@ $(document).ready(function() {
      * No textarea contains text that get copied
      */
     $("input").change(function() {
-
         /*
          * place a class that will accept the value in key (left) position
          * and an input name to take the value from in the value (right) position
@@ -100,7 +93,7 @@ $(document).ready(function() {
             ['.high_concept', 'high_concept'],
             ['.trouble', 'trouble']
         ].map(function(args) {
-            $(args[0]).html(getInputValue(args[1]));
+            $(args[0]).html(inputValueOf(args[1]));
         });
 
         // Sums up refresh cost counts of powers & stunts in bottom field
@@ -118,9 +111,9 @@ $(document).ready(function() {
 
     $('#custom_fate input').change(function() {
         updatePowerLevel(
-            getInputValue('cust_skill_cap'),
-            getInputValue('cust_total_skills'),
-            getInputValue('cust_base_refresh')
+            inputValueOf('cust_skill_cap'),
+            inputValueOf('cust_total_skills'),
+            inputValueOf('cust_base_refresh')
         );
     });
 
@@ -129,27 +122,9 @@ $(document).ready(function() {
     $('input').trigger('change');
     $('select').trigger('change');
 
-    /*
-     * Give the checkboxes their functionality
-     * This needs to happen after our default values are filled or else the
-     * checkboxes simply won't appear in the DOM
-     */
-    $("input[type='checkbox']").click(function() {
-        for (stresses in stressTrackers) {
-            for (i = 0; i < 8; i++) {
-                var currentBoxName = stressTrackers[stresses]    + "box" + i;
-                var currentImg = "#" + stressTrackers[stresses] + " img:nth-of-type(" + (i + 1) + ")";
-                var currentStressbox = "input[name='" + currentBoxName + "']";
-                if ($(currentStressbox).is(':checked')) {
-                    $(currentImg).after('<img src="img/filled_circle.png" />');
-                    $(currentImg).remove();
-                } else {
-                    $(currentImg).after('<img src="img/circle.png" />');
-                    $(currentImg).remove();
-                }
-            }
-
-        }
+    // Let the user toggle the circle images in the sheet by clickign the divs
+    $('div.imgRadioActive').click(function() {
+        $(this).toggleClass('imgRadioMarked');
     });
 });
 
@@ -187,7 +162,7 @@ function positionController() {
 }
 
 /*
- * Updated the Adjusted Refresh field by adding base reflex to amount spent
+ * Updates the Adjusted Refresh field by adding base reflex to amount spent
  * on stunts/powers, which should be a negative number.
  */
 function updateAdjustedRefresh() {
@@ -256,15 +231,8 @@ function skillLevelForShift(shiftInt) {
 }
 
 // I find myself needing input values based on names altogether too frequently.
-function getInputValue(name) {
+function inputValueOf(name) {
     return $("input[name='" + name + "']").val();
-}
-
-// Pre-fetch image content
-function preloadImages(imgArray) {
-    $(imgArray).each(function() {
-        (new Image()).src = this;
-    });
 }
 
 // Let's work on storing data

@@ -95,27 +95,6 @@
 
             <h2>Character Sheet</h2>
             <section id="floatingcontroller" class="clearfix">
-                <h1>Character status</h1>
-                <section>
-                    <p>Current Physical Stress</p>
-                    <div>1 2 3 4 5 6 7 8</div>
-                    <div id="control_phys_stress">&nbsp;</div>
-                </section>
-                <section>
-                    <p>Current Mental Stress</p>
-                    <div>1 2 3 4 5 6 7 8</div>
-                    <div id="control_ment_stress">&nbsp;</div>
-                </section>
-                <section>
-                    <p>Current Social Stress</p>
-                    <div>1 2 3 4 5 6 7 8</div>
-                    <div id="control_soc_stress">&nbsp;</div>
-                </section>
-                <section>
-                    <p>Current Hunger</p>
-                    <div>1 2 3 4 5 6 7 8</div>
-                    <div id="control_hunger_stress">&nbsp;</div>
-                </section>
                 <h1>Stress settings</h1>
                 <section>
                     <p>Max Physical Stress</p>
@@ -155,22 +134,22 @@
                                 <h3>Physical</h3>
                                 <p>(Endurance)</p>
                             </dt>
-                            <dd class="phys_stress" id="phys_stress">&nbsp;</dd>
+                            <dd class="phys_stress" id="phys_stress"></dd>
                             <dt class="ment_stress">
                                 <h3>Mental</h3>
                                 <p>(Conviction)</p>
                             </dt>
-                            <dd class="ment_stress" id="ment_stress">&nbsp;</dd>
+                            <dd class="ment_stress" id="ment_stress"></dd>
                             <dt class="soc_stress">
                                 <h3>Social</h3>
                                 <p>(Presence)</p>
                             </dt>
-                            <dd class="soc_stress" id="soc_stress">&nbsp;</dd>
+                            <dd class="soc_stress" id="soc_stress"></dd>
                             <dt class="hunger_stress">
                                 <h3>Hunger</h3>
                                 <p>(Discipline)</p>
                             </dt>
-                            <dd class="hunger_stress" id="hunger_stress">&nbsp;</dd>
+                            <dd class="hunger_stress" id="hunger_stress"></dd>
                             <dt>Armor, etc:</dt>
                             <dd>
                                 <input type="text" name="armor" />
@@ -197,7 +176,7 @@
                                     <td>Extreme</td>
                                     <td>ANY</td>
                                     <td>-8</td>
-                                    <td><img src="img/circle.png" /></td>
+                                    <td><div class="imgRadioActive"></div></td>
                                     <td><em>replace permanent</em></td>
                                 </tr>
                             </tfoot>
@@ -206,21 +185,21 @@
                                     <td>mild</td>
                                     <td>ANY</td>
                                     <td>-2</td>
-                                    <td><img src="img/circle.png" /></td>
+                                    <td><div class="imgRadioActive"></div></td>
                                     <td><input type="text" name="consequence_aspect_1" /></td>
                                 </tr>
                                 <tr>
                                     <td>moderate</td>
                                     <td>ANY</td>
                                     <td>-4</td>
-                                    <td><img src="img/circle.png" /></td>
+                                    <td><div class="imgRadioActive"></div></td>
                                     <td><input type="text" name="consequence_aspect_2" /></td>
                                 </tr>
                                 <tr>
                                     <td>severe</td>
                                     <td>ANY</td>
                                     <td>-6</td>
-                                    <td><img src="img/circle.png" /></td>
+                                    <td><div class="imgRadioActive"></div></td>
                                     <td><input type="text" name="consequence_aspect_3" /></td>
                                 </tr>
                                 <tr>
@@ -229,7 +208,7 @@
                                     <td>
                                         <input name="consequence_stress_4" type="number" min="-8" max="0" step="1" />
                                     </td>
-                                    <td><img src="img/circle.png" /></td>
+                                    <td><div class="imgRadioActive"></div></td>
                                     <td><input type="text" name="consequence_aspect_4" /></td>
                                 </tr>
                                 <tr>
@@ -238,7 +217,7 @@
                                     <td>
                                         <input name="consequence_stress_5" type="number" min="-8" max="0" step="1" />
                                     </td>
-                                    <td><img src="img/circle.png" /></td>
+                                    <td><div class="imgRadioActive"></div></td>
                                     <td><input type="text" name="consequence_aspect_5" /></td>
                                 </tr>
                                 <tr>
@@ -247,7 +226,7 @@
                                     <td>
                                         <input name="consequence_stress_6" type="number" min="-8" max="0" step="1" />
                                     </td>
-                                    <td><img src="img/circle.png" /></td>
+                                    <td><div class="imgRadioActive"></div></td>
                                     <td><input type="text" name="consequence_aspect_6" /></td>
                                 </tr>
                             </tbody>

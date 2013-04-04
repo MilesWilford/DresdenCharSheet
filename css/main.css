@@ -102,6 +102,17 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.imgRadioActive {
+    background: url('../img/circle.png');
+    display: inline-block;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    width: 36px;
+}
+
+.imgRadioMarked {background: url('../img/filled_circle.png') !important;}
+
 #floatingcontroller {
     background-color: #CCC;
     margin: 15px auto 0;
@@ -290,15 +301,15 @@ input::-webkit-inner-spin-button {
         display: block;
         margin-left: 96px;
         padding-bottom: 4px;
-        letter-spacing: 16px;
-    }
-
-    .stress img {
-        margin-left: 2px;
+        letter-spacing: 15px;
     }
 
     .stress input {
         width: 100%;
+    }
+
+    .stress div {
+        margin-right: 4px;
     }
 
 .consequences{
