@@ -1,22 +1,13 @@
 $(document).ready(function() {
-    /* Pre-cache images */
+    // Pre-cache images
     preloadImages([
         'img/circle.png',
         'img/filled_circle.png'
     ]);
 
-    var ladder_terms = $.makeArray($('#ladder_definition dd').map(function() {
-        return parseInt($(this).text());
-    }));
-
-    var ladder_values = $.makeArray($('#ladder_definition dt').map(function() {
-        return $(this).text();
-    }));
-    // Controller section needs to be positioned on load and on resize
+    // Controller section needs to be positioned on ready and on resize
     positionController();
-    $(window).resize(function() {
-        positionController();
-    });
+    $(window).resize(positionController);
 
     // Let the user toggle the circle images in the sheet
     $('.consequences img').click(function() {
@@ -74,27 +65,19 @@ $(document).ready(function() {
                 $('#custom_fate').slideDown('fast');
                 break;
             default:// case 6
-                skillCap = 'Great (+4)';
-                skillPoints = '20';
-                updatePowerLevel(skillCap, skillPoints, selectedVal);
+                updatePowerLevel(skillLevelForShift(4), 20, selectedVal);
                 $('#custom_fate').slideUp('fast');
                 break;
             case 7:
-                skillCap = 'Great (+4)';
-                skillPoints = '25';
-                updatePowerLevel(skillCap, skillPoints, selectedVal);
+                updatePowerLevel(skillLevelForShift(4), 25, selectedVal);
                 $('#custom_fate').slideUp('fast');
                 break;
             case 8:
-                skillCap = 'Superb (+5)';
-                skillPoints = '30';
-                updatePowerLevel(skillCap, skillPoints, selectedVal);
+                updatePowerLevel(skillLevelForShift(5), 30, selectedVal);
                 $('#custom_fate').slideUp('fast');
                 break;
             case 10:
-                skillCap = 'Superb (+5)';
-                skillPoints = '35';
-                updatePowerLevel(skillCap, skillPoints, selectedVal);
+                updatePowerLevel(skillLevelForShift(5), 35, selectedVal);
                 $('#custom_fate').slideUp('fast');
                 break;
         }
@@ -237,19 +220,39 @@ function updateSkillPointsRemaining() {
 
 
 // This function executed changes when the user adjusts his power level
-function updatePowerLevel(skillCap, skillPoints, baseRefresh) {
-    if (!skillPoints) {
-        skillPoints = 0;
-    }
-    if (!baseRefresh) {
-        baseRefresh = 0;
-    }
-    $('#skill_cap').html(skillCap);
+function updatePowerLevel(skillCapInt, skillPoints, baseRefresh) {
+    skillPoints = !skillPoints ? 0 : skillPoints;
+    baseRefresh = !baseRefresh ? 0 : baseRefresh;
+
+    $('#skill_cap').html(skillCapInt);
     $('#skill_points').html(skillPoints);
     $('#base_refresh').html(baseRefresh);
 
     updateAdjustedRefresh()
     updateSkillPointsRemaining();
+}
+
+// Takes shifts (in int) and returns named skill cap based on terms in #ladder_definition
+function skillLevelForShift(shiftInt) {
+    // First build array of terms
+    var ladder_terms = $.makeArray($('#ladder_definition dt').map(function() {
+        return $(this).text();
+    }));
+
+    // Lowest value is -2, not 0, so we must adjust the input
+    var shiftIntArrayPos = shiftInt + 2;
+
+    // Fail on otherwise-undefined values
+    if (shiftIntArrayPos > ladder_terms.length || shiftIntArrayPos < 0) {
+        return false;
+    }
+
+    // Terms were stored backwards
+    ladder_terms.reverse();
+
+    var symbol = shiftInt >= 0 ? "+" : "";
+
+    return ladder_terms[shiftIntArrayPos] + ' (' + symbol + shiftInt + ')';
 }
 
 // I find myself needing input values based on names altogether too frequently.
