@@ -56,7 +56,6 @@ body {
 }
 
 header {
-    background-color: #CCC;
     text-align: center;
 }
 
@@ -64,7 +63,7 @@ section, header, .section > div, .ladder, #skill_point_counter {
     border: 1px #000 solid;
     border-radius: 12px;
     padding: 8px;
-    margin: .4%;
+    margin: 5px auto;
 }
 
 input, select, textarea {
@@ -113,8 +112,11 @@ input::-webkit-inner-spin-button {
 
 .imgRadioMarked {background: url('../img/filled_circle.png') !important;}
 
-#floatingcontroller {
+.instructions {
     background-color: #CCC;
+}
+
+#floatingcontroller {
     margin: 15px auto 0;
     /*
      * This element has propertiesset in javascript by positionController
@@ -315,10 +317,6 @@ input::-webkit-inner-spin-button {
 .consequences{
 }
 
-    .instructions {
-        background-color: #CCC;
-    }
-
     .consequences input {
         text-align: center;
     }
@@ -346,7 +344,6 @@ input::-webkit-inner-spin-button {
 .skills {}
 
     #skill_point_counter {
-        background-color: #CCC;
         text-align: center;
         margin: 0 auto;
         width: 150px;
@@ -488,7 +485,6 @@ input::-webkit-inner-spin-button {
     }
 
 #custom_fate {
-    background-color: #CCC;
     display: none;
 }
 
@@ -565,11 +561,6 @@ footer {
     /* Page break definitions */
    .phases {page-break-after: always;}
 
-    header,
-    footer,
-    #floatingcontroller,
-    #skill_point_counter,
-    #custom_fate,
     .instructions {
         display: none !important;
     }

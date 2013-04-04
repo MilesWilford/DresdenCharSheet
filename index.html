@@ -23,7 +23,7 @@
         <form class="bleed">
             <h1>The Dresden Files Role-Playing Game HTML5 Character Sheet</h1>
             <h2>Character Phases Worksheet</h2>
-            <header>
+            <header class="instructions">
                 <h1>Instructions:</h1>
                 <ul>
                     <li>View the full repo for this project at: <a href="https://github.com/MilesWilford/DresdenCharSheet">GitHub</a></li>
@@ -32,6 +32,7 @@
                     <li>Use a modern browser for best results. Internet Explorer fails on some of the CSS techniques used here.</li>
                     <li>I will eventually make a more mobile-friendly layout, but this one is not very friendly on small screens.</li>
                     <li>Zero out any stress's max to remove the track from your character sheet.</li>
+                    <li>Click any circle to toggle an x in it.</li>
                 </ul>
             </header>
             <div class="smallsections clearfix">
@@ -94,7 +95,7 @@
             <!-- PAGE BREAK -->
 
             <h2>Character Sheet</h2>
-            <section id="floatingcontroller" class="clearfix">
+            <section id="floatingcontroller" class="clearfix instructions">
                 <h1>Stress settings</h1>
                 <section>
                     <p>Max Physical Stress</p>
@@ -112,7 +113,11 @@
                     <p>Max Hunger</p>
                     <input type="number" min="0" max="8" step="1" name="max_hunger_stress" />
                 </section>
-            </section>
+                <section id="skill_point_counter">
+                    <h1>Skill Points Remaining</h1>
+                    <p></p>
+                </section>
+                </section>
             <div class="smallsections clearfix">
                 <div> <!-- Left col -->
                     <section><p>Character:</p><div class="input char_name">&nbsp;</div></section>
@@ -158,9 +163,6 @@
                     </section>
                     <section class="consequences">
                         <h2>Consequences</h2>
-                        <section class="instructions">
-                            <p>Click the circles in this section to toggle an X</p>
-                        </section>
                         <table cellpadding="0" cellspacing="0">
                             <thead>
                                 <tr>
@@ -237,10 +239,6 @@
                     <section><p>Player:</p><div class="input player_name">&nbsp;</div></section>
                     <section class="skills">
                         <h2>Skills</h2>
-                        <div id="skill_point_counter">
-                            <h1>Skill Points Remaining</h1>
-                            <p>20</p>
-                        </div>
                         <section>
                             <textarea name="skills_5"></textarea>
                             <h3>Superb (+5)</h3>
@@ -447,7 +445,7 @@
                     <input type="number" min="-10" max="20" size="2" name="fate_points" />
                 </section>
             </section>
-            <section id="custom_fate" class="fate clearfix">
+            <section id="custom_fate" class="fate clearfix instructions">
                 <h1>Custom Fate Settings</h1>
                 <section>
                     <p>Custom Base Refresh</p>
@@ -464,7 +462,7 @@
             </section>
         </form>
 
-        <footer role="contentinfo">
+        <footer role="contentinfo" class="instructions">
             <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Dresden RPG Character HTML5 Character Sheet</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Miles Wilford</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.evilhat.com/home/dresden-files-rpg-downloads/" rel="dct:source">http://www.evilhat.com/home/dresden-files-rpg-downloads/</a>.</p>
             <p>This work is designed to mimic the original character sheets and is for personal use.  If you payed for this character sheet, you were conned.</p>
         </footer>
