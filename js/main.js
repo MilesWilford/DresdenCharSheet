@@ -29,8 +29,33 @@ $(document).ready(function() {
         'hunger_stress'
     ];
 
-    // Activate our stress trackers
-    stressTrackers.map(activateStressTracker);
+    /*
+     * Activate our stress trackers
+     * This function activates features in #floatingcontroller that allow the user
+     * to manage max stress and deal stress damage.
+     */
+    stressTrackers.map(function(name) {
+        var source = "input[name='max_" + name + "']";
+        var target = "#" + name;
+        var control = "#control_" + name;
+        if (!$(source).val()) {
+            $(source).val('8');
+        }
+        $(source).change(function() {
+            $(target).empty();
+            $(control).empty();
+            if ($(this).val() == 0) {
+                $('.' + name).css('display', 'none');
+            } else {
+                $('.' + name).css('display', 'block');
+                for (var i = 0; i < $(this).val(); i++) {
+                    $(target).append('<img src="img/circle.png" /> ');
+                    var checkboxName = name + 'box' + i
+                    $(control).append('<input type="checkbox" name="' + checkboxName + '" /> ');
+                }
+            }
+        });
+    });
 
 
     // Changing the powerLevel picklist triggers a few other fields to change
@@ -75,17 +100,18 @@ $(document).ready(function() {
      */
     $("input").change(function() {
 
-        // Classes (key side) represent targets to fill with code from inputs (value side)
-        var dupFields = [
-            [$('.char_name'), getInputValue('character')],
-            [$('.player_name'), getInputValue('player')],
-            [$('.high_concept'), getInputValue('high_concept')],
-            [$('.trouble'), getInputValue('trouble')]
-        ];
-
-        for (pair in dupFields) {
-            dupFields[pair][0].html(dupFields[pair][1]);
-        }
+        /*
+         * place a class that will accept the value in key (left) position
+         * and an input name to take the value from in the value (right) position
+         */
+        [
+            ['.char_name', 'character'],
+            ['.player_name', 'player'],
+            ['.high_concept', 'high_concept'],
+            ['.trouble', 'trouble']
+        ].map(function(args) {
+            $(args[0]).html(getInputValue(args[1]));
+        });
 
         // Sums up refresh cost counts of powers & stunts in bottom field
         var refreshCostCount = 0;
@@ -138,32 +164,6 @@ $(document).ready(function() {
     storeData();
 });
 
-/*
- * This function activates features in #floatingcontroller that allow the user
- * to manage max stress and deal stress damage.
- */
-function activateStressTracker(name) {
-    var source = "input[name='max_" + name + "']";
-    var target = "#" + name;
-    var control = "#control_" + name;
-    if (!$(source).val()) {
-        $(source).val('8');
-    }
-    $(source).change(function() {
-        $(target).empty();
-        $(control).empty();
-        if ($(this).val() == 0) {
-            $('.' + name).css('display', 'none');
-        } else {
-            $('.' + name).css('display', 'block');
-            for (var i = 0; i < $(this).val(); i++) {
-                $(target).append('<img src="img/circle.png" /> ');
-                var checkboxName = name + 'box' + i
-                $(control).append('<input type="checkbox" name="' + checkboxName + '" /> ');
-            }
-        }
-    });
-}
 
 // This function positions or unfixes the #floatingcontroller section.
 function positionController() {
