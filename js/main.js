@@ -31,14 +31,25 @@ $(document).ready(function() {
         switch (parseInt(urlParams['info_format_vers'])) {
             case 1:
                 console.log('Found URL params');
-                $('input, select, textarea').not($('.save_ignore')).each(function() {
+                $('input, select').not($('.save_ignore')).each(function() {
                     var elemName = $(this).attr('name');
                     if (urlParams[elemName]) {
                         console.log('from URL params for ' + elemName + ' got ' + urlParams[elemName]);
-                        $(this).val(urlParams[elemName]);
+                        if ($(this).is('textarea')) {
+                            $(this).text(urlParams[elemName]);
+                        } else {
+                            $(this).val(urlParams[elemName]);
+                        }
                     } else {
                         localStorageGet($(this));
                     }
+                });
+                $('textarea').each(function() {
+                   var elemName = $(this).attr('name');
+                   if (urlParams[elemName]) {
+                       console.log('from URL params for ' + elemName + ' got ' + urlParams[elemName])
+                       $(this).text(urlParams[elemName]);
+                   }
                 });
                 break;
             default:
@@ -46,7 +57,7 @@ $(document).ready(function() {
                 break;
         }
     } else {
-        $('input, select').not('.save_ignore').each(function() {
+        $('input, select, textarea').not('.save_ignore').each(function() {
             localStorageGet($(this));
         });
 
@@ -162,7 +173,11 @@ $(document).ready(function() {
     });
 
 
-    $('input, select, textarea').change(function() {
+    $('input, select').change(function() {
+        localStorageStash($(this));
+    });
+    // Why are stupid textareas handled differently.  That is so stupid.
+    $('textarea').bind('input propertychange', function() {
         localStorageStash($(this));
     });
 
@@ -200,6 +215,7 @@ $(document).ready(function() {
     });
 });
 
+
 // These two functions used to save & load character (persist data)
 function localStorageStash(jQInput) {
     if (localStorage && jQInput.val() && jQInput.attr('name')) {
@@ -209,7 +225,11 @@ function localStorageStash(jQInput) {
 
 function localStorageGet(jQInput) {
     if (localStorage[jQInput.attr('name')]) {
-        jQInput.val(localStorage[jQInput.attr('name')]);
+        if (jQInput.is('textarea')) {
+            jQInput.text(localStorage[jQInput.attr('name')]);
+        } else {
+            jQInput.val(localStorage[jQInput.attr('name')]);
+        }
     }
 }
 

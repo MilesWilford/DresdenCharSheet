@@ -143,6 +143,7 @@ input::-webkit-inner-spin-button {
     }
 
     #floatingcontroller section {
+        padding: 2px;
         float: left;
         width: 140px
     }
