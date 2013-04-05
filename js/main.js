@@ -11,6 +11,10 @@ $(document).ready(function() {
     positionController();
     $(window).resize(positionController);
 
+    $('input').each(function() {
+        localStorageGet($(this));
+    });
+
     // Define the stress tracks
     var stressTracks = [
         'phys_stress',
@@ -121,7 +125,15 @@ $(document).ready(function() {
 
     // For the purpose of filling default values, simulate a change
     $('input').trigger('change');
+    $('input').change(function() {
+        localStorageStash($(this));
+    });
     $('select').trigger('change');
+
+    $("*[type='reset']").click(function() {
+        localStorage.clear();
+        console.log('Dropping stored data');
+    });
 
     // Let the user toggle the circle images in the sheet by clickinn the divs
     // this must be placed after all defaults are filled.
@@ -130,6 +142,20 @@ $(document).ready(function() {
     });
 });
 
+// These two functions used to save & load character (persist data)
+function localStorageStash(jQInput) {
+    if (localStorage && jQInput.val() && jQInput.attr('name')) {
+        localStorage[jQInput.attr('name')] = jQInput.val();
+        console.log('saved: ' + localStorage[jQInput.attr('name')]);
+    }
+}
+
+function localStorageGet(jQInput) {
+    if (localStorage[jQInput.attr('name')]) {
+        jQInput.val(localStorage[jQInput.attr('name')]);
+        console.log('loaded: ' + localStorage[jQInput.attr('name')]);
+    }
+}
 
 // This function positions or unfixes the #floatingcontroller section.
 function positionController() {
