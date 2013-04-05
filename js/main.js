@@ -60,7 +60,6 @@ $(document).ready(function() {
         $('input, select, textarea').not('.save_ignore').each(function() {
             localStorageGet($(this));
         });
-
     }
 
 
@@ -218,17 +217,19 @@ $(document).ready(function() {
 
 // These two functions used to save & load character (persist data)
 function localStorageStash(jQInput) {
-    if (localStorage && jQInput.val() && jQInput.attr('name')) {
-        localStorage[jQInput.attr('name')] = jQInput.val();
+    var inputName = jQInput.attr('name');
+    if (localStorage && jQInput.val() && inputName) {
+        localStorage[inputName] = jQInput.val();
     }
 }
 
 function localStorageGet(jQInput) {
-    if (localStorage[jQInput.attr('name')]) {
+    var inputName = jQInput.attr('name');
+    if (localStorage[inputName]) {
         if (jQInput.is('textarea')) {
-            jQInput.text(localStorage[jQInput.attr('name')]);
+            jQInput.text(localStorage[inputName]);
         } else {
-            jQInput.val(localStorage[jQInput.attr('name')]);
+            jQInput.val(localStorage[inputName]);
         }
     }
 }
