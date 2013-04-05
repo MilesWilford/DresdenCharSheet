@@ -132,7 +132,6 @@ $(document).ready(function() {
 
     $("*[type='reset']").click(function() {
         localStorage.clear();
-        console.log('Dropping stored data');
     });
 
     // Let the user toggle the circle images in the sheet by clickinn the divs
@@ -146,14 +145,12 @@ $(document).ready(function() {
 function localStorageStash(jQInput) {
     if (localStorage && jQInput.val() && jQInput.attr('name')) {
         localStorage[jQInput.attr('name')] = jQInput.val();
-        console.log('saved: ' + localStorage[jQInput.attr('name')]);
     }
 }
 
 function localStorageGet(jQInput) {
     if (localStorage[jQInput.attr('name')]) {
         jQInput.val(localStorage[jQInput.attr('name')]);
-        console.log('loaded: ' + localStorage[jQInput.attr('name')]);
     }
 }
 
