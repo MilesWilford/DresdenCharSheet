@@ -188,8 +188,7 @@ $(document).ready(function() {
         $('input, select').not('.save_ignore').each(function() {
             urlParamString += $(this).attr('name') + '=' + $(this).val() + '&';
         });
-        console.log(window.location + '?' + urlParamString.substr(0, urlParamString.length - 1));
-        $('#save_url').attr('href', urlParamString);
+        $('#save_url').attr('href', window.location + '?' + urlParamString.substr(0, urlParamString.length - 1));
         $('#save_url').css('display' , 'inline');
         return false;
     });
