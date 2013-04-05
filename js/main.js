@@ -7,6 +7,8 @@ $(document).ready(function() {
         (new Image()).src = image;
     });
 
+
+
     // Controller section needs to be positioned on ready *and* on window resize
     positionController();
     $(window).resize(positionController);
@@ -134,7 +136,20 @@ $(document).ready(function() {
 
     $("*[type='reset']").click(function() {
         localStorage.clear();
-        location.reload();
+        // Reload the page body to make sure default fields are applied & no strange side-effects
+        $.ajax({
+            url : "",
+            context : document.body,
+            success : function(s, x) {
+                $(this).html(s);
+            }
+        });
+    });
+
+    // TODO append URL paramters on submit
+    $('form').submit(function() {
+        alert('clicked submit');
+        return false;
     });
 
     // Let the user toggle the circle images in the sheet by clickinn the divs

@@ -20,7 +20,8 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        <form class="bleed">
+        <form class="bleed" method="get">
+            <input type="hidden" name="info_format_vers" value="1" />
             <h1>The Dresden Files Role-Playing Game HTML5 Character Sheet</h1>
             <h2>Character Phases Worksheet</h2>
             <header class="instructions">
@@ -34,6 +35,7 @@
                     <li>Zero out any stress's max to remove the track from your character sheet.</li>
                     <li>Click any circle to toggle an x in it.</li>
                     <li>Click here: <input type="reset" /> to reset your character (changes will be lost, no confirmation).</li>
+                    <li>Alternately, click here: <input type="submit" /> to store this character into the URL.  Please note that Internet Explorer is known to have a pretty low URL character limit, so I strongly recommend against using this feature with IE.</li>
                 </ul>
             </header>
             <div class="smallsections clearfix">
@@ -464,7 +466,7 @@
         </form>
 
         <footer role="contentinfo" class="instructions">
-            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Dresden RPG Character HTML5 Character Sheet</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Miles Wilford</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.evilhat.com/home/dresden-files-rpg-downloads/" rel="dct:source">http://www.evilhat.com/home/dresden-files-rpg-downloads/</a>.</p>
+            <!-- <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Dresden RPG Character HTML5 Character Sheet</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Miles Wilford</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.evilhat.com/home/dresden-files-rpg-downloads/" rel="dct:source">http://www.evilhat.com/home/dresden-files-rpg-downloads/</a>.</p> -->
             <p>This work is designed to mimic the original character sheets and is for personal use.</p>
         </footer>
 
