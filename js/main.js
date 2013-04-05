@@ -185,7 +185,7 @@ $(document).ready(function() {
     // TODO display URL params on submit
     $('form').submit(function() {
         var urlParamString = "";
-        $('input, select').not('.save_ignore').each(function() {
+        $('input, select').each(function() {
             urlParamString += $(this).attr('name') + '=' + $(this).val() + '&';
         });
         $('#save_url').attr('href', window.location + '?' + urlParamString.substr(0, urlParamString.length - 1));
