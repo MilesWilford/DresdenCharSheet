@@ -164,6 +164,10 @@ input::-webkit-inner-spin-button {
                 margin-left: 0;
             }
 
+    #save_url {
+        display: none;
+    }
+
 .bleed {
     margin: 25px auto;
     padding: 0;

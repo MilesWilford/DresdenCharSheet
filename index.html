@@ -21,7 +21,7 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
         <form class="bleed" method="get">
-            <input type="hidden" name="info_format_vers" value="1" />
+            <input class="save_ignore" type="hidden" name="info_format_vers" value="1" />
             <h1>The Dresden Files Role-Playing Game HTML5 Character Sheet</h1>
             <h2>Character Phases Worksheet</h2>
             <header class="instructions">
@@ -34,8 +34,7 @@
                     <li>I will eventually make a more mobile-friendly layout, but this one is not very friendly on small screens.</li>
                     <li>Zero out any stress's max to remove the track from your character sheet.</li>
                     <li>Click any circle to toggle an x in it.</li>
-                    <li>Click here: <input type="reset" /> to reset your character (changes will be lost, no confirmation).</li>
-                    <li>Alternately, click here: <input type="submit" /> to store this character into the URL.  Please note that Internet Explorer is known to have a pretty low URL character limit, so I strongly recommend against using this feature with IE.</li>
+                    <li>Click here: <input class="save_ignore" type="reset" /> to reset your character (changes will be lost, no confirmation).</li>
                 </ul>
             </header>
             <div class="smallsections clearfix">
@@ -120,7 +119,13 @@
                     <h1>Skill Points Remaining</h1>
                     <p></p>
                 </section>
+                <section>
+                    <p>Bookmark or share the following link to share your character.</p>
+                    <p><small>Please note that IE will probably fail on elaborate characters.</small></p>
+                    <p><input type="submit" class="save_ignore" /></p>
+                    <p><a id="save_url" href="#">Here is a link to your character.  Bookmark or share me.</a></p>
                 </section>
+            </section>
             <div class="smallsections clearfix">
                 <div> <!-- Left col -->
                     <section><p>Character:</p><div class="input char_name">&nbsp;</div></section>

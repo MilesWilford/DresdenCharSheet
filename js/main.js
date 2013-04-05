@@ -13,9 +13,45 @@ $(document).ready(function() {
     positionController();
     $(window).resize(positionController);
 
-    $('input, select').each(function() {
-        localStorageGet($(this));
-    });
+    // Gather all the params stored in the URL
+    var urlParams = (function(a) {
+        if (a == "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i)
+        {
+            var p=a[i].split('=');
+            if (p.length != 2) continue;
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+    })(window.location.search.substr(1).split('&'));
+
+    // There will be a format version for URL params for detecting the correct formats
+    if (urlParams['info_format_vers']) {
+        switch (parseInt(urlParams['info_format_vers'])) {
+            case 1:
+                console.log('Found URL params');
+                $('input, select').not($('.save_ignore')).each(function() {
+                    var elemName = $(this).attr('name');
+                    if (urlParams[elemName]) {
+                        console.log('from URL params for ' + elemName + ' got ' + urlParams[elemName]);
+                        $(this).val(urlParams[elemName]);
+                    } else {
+                        localStorageGet($(this));
+                    }
+                });
+                break;
+            default:
+                alert('Did not recognize URL format')
+                break;
+        }
+    } else {
+        $('input, select').not('.save_ignore').each(function() {
+            localStorageGet($(this));
+        });
+
+    }
+
 
     // Define the stress tracks
     var stressTracks = [
@@ -146,9 +182,15 @@ $(document).ready(function() {
         });
     });
 
-    // TODO append URL paramters on submit
+    // TODO display URL params on submit
     $('form').submit(function() {
-        alert('clicked submit');
+        var urlParamString = "";
+        $('input, select').not('.save_ignore').each(function() {
+            urlParamString += $(this).attr('name') + '=' + $(this).val() + '&';
+        });
+        console.log(window.location + '?' + urlParamString.substr(0, urlParamString.length - 1));
+        $('#save_url').attr('href', urlParamString);
+        $('#save_url').css('display' , 'inline');
         return false;
     });
 
