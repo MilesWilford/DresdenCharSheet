@@ -31,7 +31,7 @@ $(document).ready(function() {
         switch (parseInt(urlParams['info_format_vers'])) {
             case 1:
                 console.log('Found URL params');
-                $('input, select').not($('.save_ignore')).each(function() {
+                $('input, select, textarea').not($('.save_ignore')).each(function() {
                     var elemName = $(this).attr('name');
                     if (urlParams[elemName]) {
                         console.log('from URL params for ' + elemName + ' got ' + urlParams[elemName]);
@@ -162,7 +162,7 @@ $(document).ready(function() {
     });
 
 
-    $('input, select').change(function() {
+    $('input, select, textarea').change(function() {
         localStorageStash($(this));
     });
 
@@ -182,10 +182,10 @@ $(document).ready(function() {
         });
     });
 
-    // TODO display URL params on submit
+    // TODO write some documentation
     $('form').submit(function() {
         var urlParamString = "";
-        $('input, select').each(function() {
+        $('input, select, textarea').each(function() {
             urlParamString += $(this).attr('name') + '=' + $(this).val() + '&';
         });
         $('#save_url').attr('href', window.location + '?' + urlParamString.substr(0, urlParamString.length - 1));
