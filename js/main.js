@@ -11,7 +11,7 @@ $(document).ready(function() {
     positionController();
     $(window).resize(positionController);
 
-    $('input').each(function() {
+    $('input, select').each(function() {
         localStorageGet($(this));
     });
 
@@ -123,15 +123,18 @@ $(document).ready(function() {
         );
     });
 
-    // For the purpose of filling default values, simulate a change
-    $('input').trigger('change');
-    $('input').change(function() {
+
+    $('input, select').change(function() {
         localStorageStash($(this));
     });
+
+    // For the purpose of filling default values, simulate a change
+    $('input').trigger('change');
     $('select').trigger('change');
 
     $("*[type='reset']").click(function() {
         localStorage.clear();
+        location.reload();
     });
 
     // Let the user toggle the circle images in the sheet by clickinn the divs
