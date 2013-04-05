@@ -33,13 +33,14 @@
                     <li>I will eventually make a more mobile-friendly layout, but this one is not very friendly on small screens.</li>
                     <li>Zero out any stress's max to remove the track from your character sheet.</li>
                     <li>Click any circle to toggle an x in it.</li>
+                    <li>Click here: <input type="reset" /> to reset your character (changes will be lost, no confirmation).</li>
                 </ul>
             </header>
             <div class="smallsections clearfix">
                 <section><p>Character:</p><input name="character" type="text" /></section>
                 <section><p>Player:</p><input name="player" type="text" /></section>
                 <section><p>Template:</p><select name="template">
-                    <option name="pure_mortal">Pure Mortal</option>
+                    <option name="pure_mortal" default="default">Pure Mortal</option>
                     <option name="champ_god">Champion of God</option>
                     <option name="changling">Changling</option>
                     <option name="emissary">Emissary of Power</option>
@@ -419,7 +420,7 @@
                 <section>
                     <p>power level</p>
                     <select name="powerlevel">
-                        <option value="6">Feet in the Water</option>
+                        <option value="6" default="default">Feet in the Water</option>
                         <option value="7">Up to Your Waist</option>
                         <option value="8">Chest-Deep</option>
                         <option value="10">Submerged</option>
