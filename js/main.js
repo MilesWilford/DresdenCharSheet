@@ -13,55 +13,10 @@ $(document).ready(function() {
     positionController();
     $(window).resize(positionController);
 
-    // Gather all the params stored in the URL
-    var urlParams = (function(a) {
-        if (a == "") return {};
-        var b = {};
-        for (var i = 0; i < a.length; ++i)
-        {
-            var p=a[i].split('=');
-            if (p.length != 2) continue;
-            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
-        }
-        return b;
-    })(window.location.search.substr(1).split('&'));
-
-    // There will be a format version for URL params for detecting the correct formats
-    if (urlParams['info_format_vers']) {
-        switch (parseInt(urlParams['info_format_vers'])) {
-            case 1:
-                console.log('Found URL params');
-                $('input, select').not($('.save_ignore')).each(function() {
-                    var elemName = $(this).attr('name');
-                    if (urlParams[elemName]) {
-                        console.log('from URL params for ' + elemName + ' got ' + urlParams[elemName]);
-                        if ($(this).is('textarea')) {
-                            $(this).text(urlParams[elemName]);
-                        } else {
-                            $(this).val(urlParams[elemName]);
-                        }
-                    } else {
-                        localStorageGet($(this));
-                    }
-                });
-                $('textarea').each(function() {
-                   var elemName = $(this).attr('name');
-                   if (urlParams[elemName]) {
-                       console.log('from URL params for ' + elemName + ' got ' + urlParams[elemName])
-                       $(this).text(urlParams[elemName]);
-                   }
-                });
-                break;
-            default:
-                alert('Did not recognize URL format')
-                break;
-        }
-    } else {
-        $('input, select, textarea').not('.save_ignore').each(function() {
-            localStorageGet($(this));
-        });
-    }
-
+    // Retrieve each form's value from localStorage
+    $('input, select, textarea').not('.save_ignore').each(function() {
+        localStorageGet($(this));
+    });
 
     // Define the stress tracks
     var stressTracks = [
@@ -194,17 +149,6 @@ $(document).ready(function() {
                 $(this).html(s);
             }
         });
-    });
-
-    // TODO write some documentation
-    $('form').submit(function() {
-        var urlParamString = "";
-        $('input, select, textarea').each(function() {
-            urlParamString += $(this).attr('name') + '=' + $(this).val() + '&';
-        });
-        $('#save_url').attr('href', window.location + '?' + urlParamString.substr(0, urlParamString.length - 1));
-        $('#save_url').css('display' , 'inline');
-        return false;
     });
 
     // Let the user toggle the circle images in the sheet by clickinn the divs
